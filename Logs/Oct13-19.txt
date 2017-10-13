@@ -1,0 +1,11 @@
+Init 0.01 - Init 0.03
+_ Setup project folder
+_ Added directory for simple files
+
+Init 0.04
+_ Added test.py
+  __ This is a simple file that is commented to show command line arguments passed to a script
+
+Init 0.05
+_ Added Log folder to track changes and updates to project
+_ Corrected some spelling mistakes in test.py
