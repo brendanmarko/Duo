@@ -2,3 +2,7 @@ Init 0.01
 =========
 _ Setup Race folder with Logs and Code sections
 
+Init 0.02
+=========
+_ Setup the Level and Main files with basic information
+_ Establish basic idea for Project in the README
