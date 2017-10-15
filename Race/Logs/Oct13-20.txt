@@ -1,0 +1,4 @@
+Init 0.01
+=========
+_ Setup Race folder with Logs and Code sections
+
