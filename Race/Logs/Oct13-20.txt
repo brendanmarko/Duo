@@ -6,3 +6,8 @@ Init 0.02
 =========
 _ Setup the Level and Main files with basic information
 _ Establish basic idea for Project in the README
+
+Race 0.03
+=========
+_ Created storage directory for Levels
+_ README.md update

@@ -1,0 +1,5 @@
+Level Syntax
+============
+= 	Wall
+0 	Endpoint of Race
+1...4	Start Positions
