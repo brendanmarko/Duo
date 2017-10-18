@@ -11,3 +11,9 @@ Race 0.03
 =========
 _ Created storage directory for Levels
 _ README.md update
+
+Race 0.04
+=========
+_ Added Makefile and 'clean' command
+_ Organized classes better and added some basic command line functionality to LevelReader.py
+  __ Constructor(level) will be the main tool for building Levels

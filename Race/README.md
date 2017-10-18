@@ -4,7 +4,7 @@ Race serves as an introductory game using Python. The aim of the project is crea
 
 Once a functioning prototype is made the project will scale to feature more interesting interactions!
 
-** Project Directory: **
+**Project Directory:**
 
 * The *Code* directory stores the .py files
 * The *Logs* directory stores developer notes and progress made throughout the duration of the project
