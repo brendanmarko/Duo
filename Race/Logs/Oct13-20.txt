@@ -17,3 +17,9 @@ Race 0.04
 _ Added Makefile and 'clean' command
 _ Organized classes better and added some basic command line functionality to LevelReader.py
   __ Constructor(level) will be the main tool for building Levels
+
+Race 0.05
+=========
+_ Added class variables and self identifier to LevelReader
+_ LevelReader now reads from file
+  __ Requires some work still wrt printing  
