@@ -1,25 +1,31 @@
 Init 0.01
 =========
-_ Setup Race folder with Logs and Code sections
+- Setup Race folder with Logs and Code sections
 
 Init 0.02
 =========
-_ Setup the Level and Main files with basic information
-_ Establish basic idea for Project in the README
+- Setup the Level and Main files with basic information
+- Establish basic idea for Project in the README
 
 Race 0.03
 =========
-_ Created storage directory for Levels
-_ README.md update
+- Created storage directory for Levels
+- README.md update
 
 Race 0.04
 =========
-_ Added Makefile and 'clean' command
-_ Organized classes better and added some basic command line functionality to LevelReader.py
-  __ Constructor(level) will be the main tool for building Levels
+- Added Makefile and 'clean' command
+- Organized classes better and added some basic command line functionality to LevelReader.py
+  -- Constructor(level) will be the main tool for building Levels
 
 Race 0.05
 =========
-_ Added class variables and self identifier to LevelReader
-_ LevelReader now reads from file
-  __ Requires some work still wrt printing  
+- Added class variables and self identifier to LevelReader
+- LevelReader now reads from file
+  -- Requires some work still wrt printing
+
+Race 0.06
+=========
+- Fixed indentation
+- File I/O reads in LevelXX.txt
+  -- Stored in level_storage within LevelReader.py 
