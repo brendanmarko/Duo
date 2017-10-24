@@ -29,3 +29,7 @@ Race 0.06
 - Fixed indentation
 - File I/O reads in LevelXX.txt
   -- Stored in level_storage within LevelReader.py 
+
+Race 0.07
+=========
+- 
