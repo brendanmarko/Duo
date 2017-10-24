@@ -1,13 +1,11 @@
 **Race**
 
-Race serves as a game enging using Python. The aim of the project is create a text-based game engine. The Goals of the project are: 
-* 1st, mimic the functionality of the carnival racing horse game an initial test of the engine
-* 2nd, extend the game engine to more interesting purposes
-
-Once a functioning prototype is made the project will scale to feature more interesting interactions!
+The aim of the *Race* project is to create a text-based game engine. The specific goals of the project consist of: 
+* Creating a simple emulation of the carnival horse race game to test the engine
+* Extending the functionality of the game engine beyond a trivial game
 
 **Project Directory:**
 
-* The *Code* directory stores the .py files
-* The *Logs* directory stores developer notes and progress made throughout the duration of the project
-* The *Levels* directory stores information pertaining to Level layouts
+* *Code* stores the .py files
+* *Logs* stores developer notes and logs
+* *Levels* stores Level layout files

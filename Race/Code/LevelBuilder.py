@@ -46,16 +46,16 @@ class LevelBuilder:
 		if (char == '.'):
 			print("Empty space found.")
 		
-		# Deals with walls
+		# Handles walls
 		elif (char == 'w'):
 			print("Wall found.")
 
-			# Closing endpoint for active Wall found
+			# Previous Wall endpoint created; Wall opened
 			if (self.wall_builder.builderActive() == 1):
 				print("WallBuilder already awake.")
 				self.wall_builder.closeWall()
 			
-			# Previous wall piece NOT detected
+			# Previous wall endpoint NOT created; No Wall
 			elif (self.wall_builder.builderActive() == 0):
 				self.wall_builder.activateBuilder()
 				print("wallBuilder awake.")

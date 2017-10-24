@@ -20,11 +20,12 @@ class WallBuilder(object):
 		self.x_start=row
 		self.y_start=col
 		self.active=0
+		self.x_span=0
+		self.y_span=0
+		self.line_type=""
 		
-		# Storage?
-
-		if (self.DEBUG == 1):
-			print("Start pos of Wall (" + str(row) + ", " + str(col) + ")")
+		# Storage
+		self.wall_storage=[]
 
 	# Functions
 	# builderActive(self)
@@ -45,15 +46,34 @@ class WallBuilder(object):
 		# WB now active
 		self.active=1
 
+	# resetBuilder(self)
+	# Returns the WallBuilder to default setup for next Wall
+	def resetBuilder(self):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":resetBuilder")
+		self.active=0
+		self.x_span=0
+		self.y_span=0		
+
 	# extendWall(self)
 	# Extends walls one block to the right
 	def extendWall(self):
-		print("Extending Wall...")
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":extendWall")
+		self.x_span+=1
 
 	# closeWall(self)
 	# Closes the Wall and creates a Wall object
 	def closeWall(self):
 		print(self.DEBUG_TAG + ":closeWall")
+		
+		self.x_span+=1
+
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":closeWall:span:" + str(self.x_span))
 
 		# Build Wall
-		new_wall = Wall(0,0)
+		new_wall = Wall(self.x_start, self.y_start, self.x_span)
+
+		# Resets the WallBuilder
+		self.resetBuilder()
