@@ -1,18 +1,12 @@
 # LevelBuilder.py
 # Reads in Level data and populates a collection to store the Level layout
 
+# Imports
+from WallBuilder import *
+
 class LevelBuilder:
 	'Reads in Level data and populates a collection to store the Level layout'
 		
-    # Debug info
-	DEBUG=0
-	DEBUG_TAG="LevelBuilder"
-	
-    # Variables
-	curr_file=None
-	file_path=""
-	level_storage=None
-
     # Constructor(self)
 	def __init__(self):
 		print("LevelBuilder created.")
@@ -21,13 +15,19 @@ class LevelBuilder:
     # This constructor takes a String; the level to be loaded
 	def __init__(self, level):
 		print("LevelBuilder created with: " + level)	
-		
-		# Variable init
+
+    	# Debug info
 		self.DEBUG=1
+		self.DEBUG_TAG="LevelBuilder"
+
+		# Variable init
 		self.level_storage=[]
 		self.file_path="Levels/Level" + level + ".txt"	
 
-		# Debug
+		# WallBuilder
+		self.wall_builder=WallBuilder(0,0)
+
+		# File path check
 		if (self.DEBUG == 1):
 			print("Value of file_path: " + self.file_path)
 
@@ -35,7 +35,7 @@ class LevelBuilder:
     # Prints current level
 	def printLayout(self):
 		for i in range(len(self.level_storage)):
-			print(self.level_storage[i]), 
+			print(self.level_storage[i])
     
 	# handleChar(self, char)
 	# Constructs Objects based upon character being passed
@@ -50,11 +50,24 @@ class LevelBuilder:
 		elif (char == 'w'):
 			print("Wall found.")
 
+			# Closing endpoint for active Wall found
+			if (self.wall_builder.builderActive() == 1):
+				print("WallBuilder already awake.")
+				self.wall_builder.closeWall()
+			
+			# Previous wall piece NOT detected
+			elif (self.wall_builder.builderActive() == 0):
+				self.wall_builder.activateBuilder()
+				print("wallBuilder awake.")
+
 		elif (char == 'd'):
 			print("Destructible found.")
 
 		elif (char == '-'):
 			print("Wall connector found.")
+			
+			# Handles the extensions of the Wall
+			self.wall_builder.extendWall()
 
 		else:
 			print("Default case.")

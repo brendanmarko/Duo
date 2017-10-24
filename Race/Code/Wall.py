@@ -1,23 +1,26 @@
 # Wall.py
 # Manipulates/Creates the Wall object in the game world
 
-class Wall:
+class Wall(object):
 	'Manipulates/Creates the Wall object in the game world'
-	
-	# Debug info
-	DEBUG=0
-	DEBUG_TAB="Wall"
 
 	# Variables
-	start_pos=None
-	close_pos=None
 	destructible=False
 
 	# Wall(self)
-	def Wall(self):
+	def __init__(self):
 		print("Wall created.")
 
 	# Wall(self, start, close)
-	def Wall(self, start, close)
-		start_pos=start
-		close_pos=close
+	def __init__(self, start, close):
+		print("Wall created.")
+
+		# Debug info
+		self.DEBUG=0
+		self.DEBUG_TAB="Wall"
+		
+		# Variables
+		self.start_pos_x=0
+		self.start_pos_y=0
+		self.close_pos_x=0
+		self.close_pos_y=0

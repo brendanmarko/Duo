@@ -36,4 +36,12 @@ Race 0.07
 - Added new classes
   -- WallBuilder.py, Wall.py
 - Further work required on WallBuilder.py before moving further
-  -- Must properly detect all cases of horizontal wall
+  -- Must properly detect instances of Wall
+
+Race 0.08
+=========
+- WallBuilder.py detects when sections of walls span
+  -- Detects endpoints of Wall
+  -- Creates Wall object with proper span
+- LevelBuilder/handleChar() handles input cases 
+  --  WallBuilder instance handled here as well
