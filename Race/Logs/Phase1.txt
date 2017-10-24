@@ -32,4 +32,8 @@ Race 0.06
 
 Race 0.07
 =========
-- 
+- Iterates through level_storage noting which objects are needed
+- Added new classes
+  -- WallBuilder.py, Wall.py
+- Further work required on WallBuilder.py before moving further
+  -- Must properly detect all cases of horizontal wall

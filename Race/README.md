@@ -1,6 +1,8 @@
 **Race**
 
-Race serves as an introductory game using Python. The aim of the project is create a text-based game that mimics the functionality of the carnival racing horse game.
+Race serves as a game enging using Python. The aim of the project is create a text-based game engine. The Goals of the project are: 
+* 1st, mimic the functionality of the carnival racing horse game an initial test of the engine
+* 2nd, extend the game engine to more interesting purposes
 
 Once a functioning prototype is made the project will scale to feature more interesting interactions!
 

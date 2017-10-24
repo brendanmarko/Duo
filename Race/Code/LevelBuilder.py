@@ -41,6 +41,24 @@ class LevelBuilder:
 	# Constructs Objects based upon character being passed
 	def handleChar(self, char):
 		print("Inside handleChar with: " + char)
+		
+		# Handles characters wrt their designation	
+		if (char == '.'):
+			print("Empty space found.")
+		
+		# Deals with walls
+		elif (char == 'w'):
+			print("Wall found.")
+
+		elif (char == 'd'):
+			print("Destructible found.")
+
+		elif (char == '-'):
+			print("Wall connector found.")
+
+		else:
+			print("Default case.")
+		
 
 	# buildGameWorld(self)
 	# Reads from level_storage and builds Objects
@@ -57,7 +75,7 @@ class LevelBuilder:
 			for y in range(len(self.level_storage[x])):
 				
 				# Outputs the current character being read within the Level
-				if (DEBUG == 1):
+				if (self.DEBUG == 1):
 					print("Value: " + str(row) + ", " + str(col) + "	" + (self.level_storage[x])[y])
 	
 				# Handles each individual character
