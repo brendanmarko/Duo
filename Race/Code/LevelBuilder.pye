@@ -18,12 +18,11 @@ class LevelBuilder:
 
     	# Debug info
 		self.DEBUG=1
-		self.DEBUG_TAG="[LevelBuilderl"
+		self.DEBUG_TAG="LevelBuilder"
 
 		# Variable init
 		self.level_storage=[]
 		self.file_path="Levels/Level" + level + ".txt"	
-		self.curr_reader_pos=[0,0]
 
 		# WallBuilder
 		self.wall_builder=WallBuilder(0,0)
@@ -41,7 +40,7 @@ class LevelBuilder:
 	# handleChar(self, char)
 	# Constructs Objects based upon character being passed
 	def handleChar(self, char):
-		print(self.DEBUG_TAG + ":handleChar:" + char)
+		print("Inside handleChar with: " + char)
 		
 		# Handles characters wrt their designation	
 		if (char == '.'):
@@ -53,18 +52,21 @@ class LevelBuilder:
 
 			# Previous Wall endpoint created; Wall opened
 			if (self.wall_builder.builderActive() == 1):
+				print("WallBuilder already awake.")
 				self.wall_builder.closeWall()
 			
 			# Previous wall endpoint NOT created; No Wall
 			elif (self.wall_builder.builderActive() == 0):
 				self.wall_builder.activateBuilder()
-				self.wall_builder.updateStartPosition(self.curr_reader_pos[0], self.curr_reader_pos[1])
+				print("wallBuilder awake.")
 
 		elif (char == 'd'):
 			print("Destructible found.")
 
 		elif (char == '-'):
 			print("Wall connector found.")
+			
+			# Handles the extensions of the Wall
 			self.wall_builder.extendWall()
 
 		else:
@@ -76,30 +78,28 @@ class LevelBuilder:
 	def buildGameWorld(self):
 		print("[Building Game world]")
 
-		# Represents Rows and Columns respectively
-		self.curr_reader_pos[0]=0
-		self.curr_reader_pos[1]=0
+		row=0
+		col=0
 		
-		# Outer for-loop iterates over rows (Y-axis)
-		for row in range(len(self.level_storage)):
+		# Outer for-loop iterates over rows
+		for x in range(len(self.level_storage)):
 	
-			# Update row before next columns iteration
-			self.curr_reader_pos[0]=row
-
-			# Inner for-loop iterates over columns (X-axis)
-			for column in range(len(self.level_storage[row])):
+			# Inner for-loop iterates over columns
+			for y in range(len(self.level_storage[x])):
 				
-				# Update column value before next row
-				self.curr_reader_pos[1]=column
-
 				# Outputs the current character being read within the Level
 				if (self.DEBUG == 1):
-					print(self.DEBUG_TAG + ":buildGameWorld:[" + str(self.curr_reader_pos[0]) + "," + str(self.curr_reader_pos[1]) + "] " + (self.level_storage[row])[column])
+					print("Value: " + str(row) + ", " + str(col) + "	" + (self.level_storage[x])[y])
 	
 				# Handles each individual character
-				self.handleChar((self.level_storage[row])[column])
+				self.handleChar((self.level_storage[x])[y])
+				col+=1
 
-		print("[Game world build complete]")
+			# Iterations between rows
+			row+=1
+			col=0
+
+		print("[Game world complete]")
 
     # setup(self)
     # Performs LevelBuilder setup
@@ -117,9 +117,6 @@ class LevelBuilder:
         # Build Objects
 		self.buildGameWorld()
 	
-		# Preview Walls
-		self.wall_builder.wallCollection()
-
 	# getLevel(self)
 	# Returns the list containing the current Level
 	def getLevelList(self):

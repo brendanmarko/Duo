@@ -62,18 +62,37 @@ class WallBuilder(object):
 			print(self.DEBUG_TAG + ":extendWall")
 		self.x_span+=1
 
+	# updateStartPosition(self, x, y)
+	# Updates the position where WallBuilder creates a new wall
+	def updateStartPosition(self, x, y):
+		if (self.DEBUG == 1):	
+			print(self.DEBUG_TAG + ":updateStartPosition:" + str(x) + ":" + str(y))
+		self.x_start=x
+		self.y_start=y
+
 	# closeWall(self)
 	# Closes the Wall and creates a Wall object
 	def closeWall(self):
-		print(self.DEBUG_TAG + ":closeWall")
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":closeWall")
 		
 		self.x_span+=1
 
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":closeWall:span:" + str(self.x_span))
+			print(self.DEBUG_TAG + ":closeWall:pos:" + str(self.x_start) + ":" + str(self.y_start))
 
 		# Build Wall
 		new_wall = Wall(self.x_start, self.y_start, self.x_span)
+		self.wall_storage.append(new_wall)
 
 		# Resets the WallBuilder
 		self.resetBuilder()
+
+	# wallCollection(self)
+	# Returns all Wall objects
+	def wallCollection(self):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":wallCollection")
+			print(self.wall_storage)
+		return self.wall_storage

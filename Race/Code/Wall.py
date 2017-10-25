@@ -12,25 +12,26 @@ class Wall(object):
 
 	# Wall(self, start, close)
 	# Begins the build process of the Wall
-	def __init__(self, root_x, root_y, span):
+	def __init__(self, root_row, root_col, span):
 
 		# Debug info
 		self.DEBUG=1
 		self.DEBUG_TAG="[Wall]"
 		
 		# Range
-		self.x_range=[0,0]
-		self.y_range=[0,0]
+		self.row_range=[0,0]
+		self.col_range=[0,0]
 		
 		# Root positions
-		self.start_x=root_x
-		self.start_y=root_y
-
-		# Affected by direction of span
-		self.close_pos_x=(root_x + span) # Only Temporary until Vertical walls
-		self.close_pos_y=0
+		self.row_range[0]=root_row
+		self.col_range[0]=root_col
+	
+		# End positions 
+		# These values will update wrt which direction the span moves
+		self.row_range[1]=root_row
+		self.col_range[1]=self.col_range[0]+span
 
 		if (self.DEBUG == 1):
-			print(self.DEBUG_TAG + ":Constructor:" + str(root_x) + ":" + str(root_y) + ":" + str(span))
-
-		
+			print(self.DEBUG_TAG + ":Constructor:" + str(root_row) + ":" + str(root_col) + ":" + str(span))
+			print(self.DEBUG_TAG + ":Constructor:" + ":row_span:" + str(self.row_range))
+			print(self.DEBUG_TAG + ":Constructor:" + ":col_span:" + str(self.col_range))

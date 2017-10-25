@@ -45,3 +45,11 @@ Race 0.08
   -- Creates Wall object with proper span
 - LevelBuilder/handleChar() handles input cases 
   --  WallBuilder instance handled here as well
+
+Race 0.09
+=========
+- Got too excited with naming and skipped to 0.10 pre-emptively!
+- Walls now are properly built and calculated; stored in list once buildGameWorld() is complete
+- WallBuilder.py now uses row_span, col_span to represent displacements
+- Complete object creation for rest of game objects
+  -- Graphics will come after
