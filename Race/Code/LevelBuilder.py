@@ -2,7 +2,8 @@
 # Reads in Level data and populates a collection to store the Level layout
 
 # Imports
-from WallBuilder import *
+from Racer			import *
+from WallBuilder 	import *
 
 class LevelBuilder:
 	'Reads in Level data and populates a collection to store the Level layout'
@@ -44,7 +45,7 @@ class LevelBuilder:
 		print(self.DEBUG_TAG + ":handleChar:" + char)
 		
 		# Handles characters wrt their designation	
-		if (char == '.'):
+		if (char == ' '):
 			print("Empty space found.")
 		
 		# Handles walls
@@ -59,6 +60,12 @@ class LevelBuilder:
 			elif (self.wall_builder.builderActive() == 0):
 				self.wall_builder.activateBuilder()
 				self.wall_builder.updateStartPosition(self.curr_reader_pos[0], self.curr_reader_pos[1])
+
+		# Handles Racers
+		elif (char == 'r'):
+			print("Racer found.")
+			new_racer=Racer(self.curr_reader_pos[0], self.curr_reader_pos[1])
+			
 
 		elif (char == 'd'):
 			print("Destructible found.")

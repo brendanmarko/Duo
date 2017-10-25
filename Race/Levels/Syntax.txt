@@ -1,5 +1,7 @@
 Level Syntax
 ============
-= 	Wall
-0 	Endpoint of Race
-1...4	Start Positions
+w 	Wall start/end-pt
+-	Wall connector
+0 	Race end-pt
+r	Racer
+	Empty space

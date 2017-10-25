@@ -53,3 +53,8 @@ Race 0.09
 - WallBuilder.py now uses row_span, col_span to represent displacements
 - Complete object creation for rest of game objects
   -- Graphics will come after
+
+Race 0.10
+=========
+- Added Racer class
+- Udated Level00.txt and syntax for level building
