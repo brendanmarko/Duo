@@ -11,5 +11,5 @@ ut:
 	@echo "[Uploading changes to Tester]"
 	@git add .
 	@git commit -m $(arg)
-	@git push origin master-tester
+	@git push origin master:tester
 	
