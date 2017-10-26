@@ -94,5 +94,4 @@ class WallBuilder(object):
 	def wallCollection(self):
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":wallCollection")
-			print(self.wall_storage)
 		return self.wall_storage

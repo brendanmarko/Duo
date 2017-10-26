@@ -58,3 +58,5 @@ Race 0.10
 =========
 - Added Racer class
 - Udated Level00.txt and syntax for level building
+- Changed the way Levels are made; dedicated object now
+  -- receives lists from LevelBuilder

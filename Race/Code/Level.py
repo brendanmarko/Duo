@@ -1,20 +1,25 @@
-# Level.py; reads from a text file to construct the level for an instance
+# Level.py
+# Stores lists of game objects wrt a given level
 
-class Level:
-	name=""
-	complete=False
-	
-	# getName()
-	# This function returns the name of the current level object
-	def getName():
-		return name
+class Level(object):
 
-	# completed()
-	# This function checks if the level is completed
-	def completed():
-		return complete
+	# Level(walls, entities)
+	# Creates a Level given two input lists
+	def __init__(self, walls, entities):
+		' Stores lists of game objects wrt a given level'
 
-	# levelComplete()
-	# This function sets the Level to be completed
-	def levelComplete():
-		complete=True
+		# Debug Info
+		self.DEBUG=1
+		self.DEBUG_TAG="[Level]"	
+
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":Constructor")
+
+		# Populate Level object lists
+		self.w_list=walls
+		self.e_list=entities
+
+		# Preview Lists
+		if (self.DEBUG == 1):
+			print(self.w_list)
+			print(self.e_list)

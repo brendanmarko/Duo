@@ -4,11 +4,26 @@
 class Wall(object):
 	'Manipulates/Creates the Wall object in the game world'
 
-	# wallBounds(self)
-	# Constructs the ranges the Wall will occupy
-	def wallBounds(self):
+	# collisionCheck(self, pos)
+	# Checks if an object is colliding with the Wall
+	def collisionCheck(self, pos):
 		if (self.DEBUG == 1):
-			print(self.DEBUG_TAG + ":wallBounds")
+			print(self.DEBUG_TAG + ":collisionCheck")
+		
+		# Checks for row collision
+		if (pos[0] >= self.row_range[0] and pos[0] <= self.row_range[1]):
+			print(":collisionTrueRow")
+			return 1;
+		
+		# Checks for column collision
+		if (pos[0] >= self.col_range[0] and pos[1] <= self.col_range[1]):
+			print(":collisionTrueCol")
+			return 1;
+
+		# No row/column collision occured
+		return 0;
+		
+		
 
 	# Wall(self, start, close)
 	# Begins the build process of the Wall

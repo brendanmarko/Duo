@@ -2,8 +2,9 @@
 # Reads in Level data and populates a collection to store the Level layout
 
 # Imports
-from Racer			import *
-from WallBuilder 	import *
+from Level import *
+from Racer import *
+from WallBuilder import *
 
 class LevelBuilder:
 	'Reads in Level data and populates a collection to store the Level layout'
@@ -17,21 +18,29 @@ class LevelBuilder:
 	def __init__(self, level):
 		print("LevelBuilder created with: " + level)	
 
-    	# Debug info
+		# Debug info
 		self.DEBUG=1
-		self.DEBUG_TAG="[LevelBuilderl"
+		self.DEBUG_TAG="[LevelBuilder]"
 
 		# Variable init
 		self.level_storage=[]
 		self.file_path="Levels/Level" + level + ".txt"	
 		self.curr_reader_pos=[0,0]
+		self.curr_level=None
 
 		# WallBuilder
 		self.wall_builder=WallBuilder(0,0)
 
+		# Storage
+		self.wall_list=[]
+		self.entity_list=[]
+
 		# File path check
 		if (self.DEBUG == 1):
 			print("Value of file_path: " + self.file_path)
+
+		# Further setup steps
+		self.setup()
 
     # printLayout(self)
     # Prints current level
@@ -63,9 +72,9 @@ class LevelBuilder:
 
 		# Handles Racers
 		elif (char == 'r'):
-			print("Racer found.")
+			print(self.DEBUG_TAG + ":Racer")
 			new_racer=Racer(self.curr_reader_pos[0], self.curr_reader_pos[1])
-			
+			self.entity_list.append(new_racer)	
 
 		elif (char == 'd'):
 			print("Destructible found.")
@@ -105,7 +114,9 @@ class LevelBuilder:
 	
 				# Handles each individual character
 				self.handleChar((self.level_storage[row])[column])
-
+		
+		# Assigns Walls to wall_list
+		self.wall_list=self.wall_builder.wallCollection()
 		print("[Game world build complete]")
 
     # setup(self)
@@ -123,9 +134,16 @@ class LevelBuilder:
 
         # Build Objects
 		self.buildGameWorld()
-	
-		# Preview Walls
-		self.wall_builder.wallCollection()
+
+		# Build Level
+		self.curr_level=Level(self.wall_list, self.entity_list)	
+
+	# getLevel(self)
+	# Returns the Level object created by LevelBuilder
+	def getLevel(self):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":getLevel")
+		return self.curr_level
 
 	# getLevel(self)
 	# Returns the list containing the current Level
