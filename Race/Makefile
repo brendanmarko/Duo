@@ -6,3 +6,10 @@ run:
 	@echo "[Running Application]"
 	@python3 Code/Main.py
 	@echo "[Application terminated]"
+
+ut:
+	@echo "[Uploading changes to Tester]"
+	@git add .
+	@git commit -m $(arg)
+	@git push origin master-tester
+	

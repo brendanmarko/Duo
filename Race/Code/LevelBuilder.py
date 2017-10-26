@@ -26,7 +26,6 @@ class LevelBuilder:
 		self.level_storage=[]
 		self.file_path="Levels/Level" + level + ".txt"	
 		self.curr_reader_pos=[0,0]
-		self.curr_level=None
 
 		# WallBuilder
 		self.wall_builder=WallBuilder(0,0)
@@ -40,7 +39,7 @@ class LevelBuilder:
 			print("Value of file_path: " + self.file_path)
 
 		# Further setup steps
-		self.setup()
+		self.curr_level=self.setup()
 
     # printLayout(self)
     # Prints current level
@@ -103,8 +102,7 @@ class LevelBuilder:
 			self.curr_reader_pos[0]=row
 
 			# Inner for-loop iterates over columns (X-axis)
-			for column in range(len(self.level_storage[row])):
-				
+			for column in range(len(self.level_storage[row])):		
 				# Update column value before next row
 				self.curr_reader_pos[1]=column
 
@@ -122,21 +120,22 @@ class LevelBuilder:
     # setup(self)
     # Performs LevelBuilder setup
 	def setup(self):
-		# Opens the specified file
+		
 		curr_file=open(self.file_path, "r")
        
-        # Reads lines from LevelXX
+		# Reads lines from LevelXX
 		for line in curr_file:
 			self.level_storage.append(line.strip())
 
 		# Close the file when finished
 		curr_file.close()
 
-        # Build Objects
+		# Build Objects
 		self.buildGameWorld()
 
 		# Build Level
 		self.curr_level=Level(self.wall_list, self.entity_list)	
+		return self.curr_level
 
 	# getLevel(self)
 	# Returns the Level object created by LevelBuilder

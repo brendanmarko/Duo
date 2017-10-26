@@ -23,3 +23,9 @@ class Level(object):
 		if (self.DEBUG == 1):
 			print(self.w_list)
 			print(self.e_list)
+
+	def getWalls(self):
+		return self.w_list
+
+	def getEntities(self):
+		return self.e_list
