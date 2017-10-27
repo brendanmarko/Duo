@@ -6,7 +6,7 @@ class Level(object):
 	# Level(walls, entities)
 	# Creates a Level given two input lists
 	def __init__(self, walls, entities):
-		' Stores lists of game objects wrt a given level'
+		'Stores lists of game objects wrt a given level'
 
 		# Debug Info
 		self.DEBUG=1
@@ -23,6 +23,9 @@ class Level(object):
 		if (self.DEBUG == 1):
 			print(self.w_list)
 			print(self.e_list)
+
+	def __repr__(self):
+		return self.DEBUG_TAG + ":toString"
 
 	def getWalls(self):
 		return self.w_list

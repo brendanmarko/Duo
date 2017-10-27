@@ -62,3 +62,7 @@ Race 0.10
   -- receives lists from LevelBuilder
 - Restructured Main.py into Class
   -- Entities/Walls receive draw()
+- Added more commands to Makefile
+- Project will require Pygame to proceed, all changes afterwards are part of Phase2!
+
+# end : Phase1

@@ -46,7 +46,7 @@ class Main(object):
 			
 			# Update
 
-			# Print 
+			# Draw 
 			self.draw(curr_level)
 
 			x+=1
@@ -64,6 +64,9 @@ class Main(object):
 		# Draw entities
 		for entity in curr_level.getEntities():
 			print("ENTITY")
+
+		# Print Level	
+		print(curr_level)
 
 # Execute the Game
 main=Main()

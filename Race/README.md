@@ -2,6 +2,7 @@
 
 The aim of the *Race* project is to create a text-based game engine. The specific goals of the project consist of: 
 * Creating a simple emulation of the carnival horse race game to test the engine
+	* Displaying information requires Pygame; easier to make the switch now than later 
 * Extending the functionality of the game engine beyond a trivial game
 
 **Project Directory:**
