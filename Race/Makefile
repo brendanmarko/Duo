@@ -1,12 +1,14 @@
 ## Cleans project directory
 clean:
 	@echo "[Cleaning directory]"
-	@rm -r Code/__pycache__
+	@if test -d Code/__pycache__ ; then echo "[Removing files]"; \
+	rm -r Code/__pycache__; \
+	fi	
 
 ## Runs the application
 run:
 	@echo "[Running Application]"
-	@python3 Code/Main.py
+	@python2 Code/Main.py
 	@echo "[Application terminated]"
 
 ## Uploads project changes to master:testera

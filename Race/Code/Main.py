@@ -1,73 +1,41 @@
-# Main.py; launches the game
+import pygame
+from pygame.locals import *
 
-# Imports
-import sys
-from time import sleep
-from LevelBuilder import *
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+done = False
+is_blue = True
+x = 30
+y = 30
 
-class Main(object):
-	'launches the game'	
+clock = pygame.time.Clock()
 
-	def __init__(self):
-		# Variables
-		self.level_num=""
+while not done:
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			done = True
+		if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+			is_blue = not is_blue
+        
+	# Handles key presses
+	pressed = pygame.key.get_pressed()
+        
+	if (pressed[pygame.K_w] or pressed[pygame.K_UP]):
+		y -= 3
+	if (pressed[pygame.K_s] or pressed[pygame.K_DOWN]):
+		y += 3
+	if (pressed[pygame.K_a] or pressed[pygame.K_LEFT]):
+		x -= 3
+	if (pressed[pygame.K_d] or pressed[pygame.K_RIGHT]):
+		x += 3
 
-		# Debug info
-		self.DEBUG=1
-		self.DEBUG_TAG="[Main]"
 
-		# Reads arguments from command line for which level to load
-		# If no argument is entered, 00 is rendered
-		if (len(sys.argv) > 1):
-			self.level_num=sys.argv[1]
-		else:
-			self.level_num="00"
+	screen.fill((0, 0, 0))
+	if (is_blue): 
+		color = (0, 128, 255)
+	else:
+		 color = (255, 100, 0)
+	pygame.draw.rect(screen, color, pygame.Rect(x, y, 60, 60))
 
-		# Build Level
-		self.lvl_builder=LevelBuilder(self.level_num)
-
-	def start(self):
-		if (self.DEBUG == 1):
-			print(":start")
-		
-		self.gameLoop(self.lvl_builder.getLevel())
-
-	def gameLoop(self, curr_level):
-		if (self.DEBUG == 1):
-			print(self.DEBUG_TAG + ":gameLoop")
-
-		# Game loop
-		x=0
-		while(x <= 180):
-			print(str(x))
-			
-			# Delays updates for 1/60s : 60FPS
-			sleep(1/60)
-			
-			# Update
-
-			# Draw 
-			self.draw(curr_level)
-
-			x+=1
-
-	# draw(self)
-	# Prints to the Screen
-	def draw(self, curr_level):
-		if (self.DEBUG == 1):
-			print(self.DEBUG_TAG + ":draw")
-		
-		# Draw Walls
-		for wall in curr_level.getWalls():
-			print("WALL")
-
-		# Draw entities
-		for entity in curr_level.getEntities():
-			print("ENTITY")
-
-		# Print Level	
-		print(curr_level)
-
-# Execute the Game
-main=Main()
-main.start()
+	pygame.display.flip()
+	clock.tick(60)

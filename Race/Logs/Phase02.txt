@@ -1,0 +1,4 @@
+Race 0.11
+=========
+- Added basic controlling mechanisms
+- Will have to incorporate OldMain.py back into execution with controls
