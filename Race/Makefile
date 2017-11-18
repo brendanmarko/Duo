@@ -4,6 +4,7 @@ clean:
 	@if test -d Code/__pycache__ ; then echo "[Removing files]"; \
 	rm -r Code/__pycache__; \
 	fi	
+	@ rm Code/*.pyc
 
 ## Runs the application
 run:
@@ -11,7 +12,7 @@ run:
 	@python2 Code/Main.py
 	@echo "[Application terminated]"
 
-## Uploads project changes to master:testera
+## Uploads project changes to master:tester
 ## Requirements: arg=new_commit_name
 ## ie) make ut arg="Race0.00"
 ut:

@@ -1,41 +1,88 @@
+# Main.py; launches the game
+
+# Imports
+import sys
 import pygame
-from pygame.locals import *
 
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-done = False
-is_blue = True
-x = 30
-y = 30
+# Class imports
+from time import sleep
+from EventHandler import *
+from LevelBuilder import *
 
-clock = pygame.time.Clock()
+# Game Info
+GAME_X_DIM=800
+GAME_Y_DIM=600
+GAME_TITLE="RACE 0.12"
 
-while not done:
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			done = True
-		if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-			is_blue = not is_blue
-        
-	# Handles key presses
-	pressed = pygame.key.get_pressed()
-        
-	if (pressed[pygame.K_w] or pressed[pygame.K_UP]):
-		y -= 3
-	if (pressed[pygame.K_s] or pressed[pygame.K_DOWN]):
-		y += 3
-	if (pressed[pygame.K_a] or pressed[pygame.K_LEFT]):
-		x -= 3
-	if (pressed[pygame.K_d] or pressed[pygame.K_RIGHT]):
-		x += 3
+class Main(object):
+	'launches the game'	
+
+	def __init__(self):
+		# Variables
+		self.level_num=""
+
+		# Debug info
+		self.DEBUG=1
+		self.DEBUG_TAG="[Main]"
+
+		# Reads arguments from command line for which level to load
+		# If no argument is entered, 00 is rendered
+		if (len(sys.argv) > 1):
+			self.level_num=sys.argv[1]
+		else:
+			self.level_num="00"
+
+		# Init pygame info
+		pygame.init()
+  		self.display_surface = pygame.display.set_mode((GAME_X_DIM, GAME_Y_DIM))
+   		pygame.display.set_caption(GAME_TITLE)
+ 		self.clock = pygame.time.Clock()
+
+		# Init EventHandler
+		self.event_handler=EventHandler()
+
+		# Build Level
+		self.lvl_builder=LevelBuilder(self.level_num)
+
+	def start(self):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":start")
+		
+		self.gameLoop(self.lvl_builder.getLevel())
+
+	def gameLoop(self, curr_level):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":gameLoop")
+
+		# Game loop
+		while True:
+			for event in pygame.event.get():
+          
+				# Event handler called
+				self.event_handler.handleEvent(event)
+       		
+			pygame.draw.rect(self.display_surface, (0, 255, 0), pygame.Rect(0, 0, 60, 60))
+			pygame.display.flip()
+			self.clock.tick(60)
 
 
-	screen.fill((0, 0, 0))
-	if (is_blue): 
-		color = (0, 128, 255)
-	else:
-		 color = (255, 100, 0)
-	pygame.draw.rect(screen, color, pygame.Rect(x, y, 60, 60))
+	# draw(self)
+	# Prints to the Screen
+	def draw(self, curr_level):
+		if (self.DEBUG == 1):
+			print(self.DEBUG_TAG + ":draw")
+		
+		# Draw Walls
+		for wall in curr_level.getWalls():
+			print("WALL")
 
-	pygame.display.flip()
-	clock.tick(60)
+		# Draw entities
+		for entity in curr_level.getEntities():
+			print("ENTITY")
+
+		# Print Level	
+		print(curr_level)
+
+# Execute the Game
+main=Main()
+main.start()

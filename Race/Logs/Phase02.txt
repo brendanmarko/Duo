@@ -2,3 +2,10 @@ Race 0.11
 =========
 - Added basic controlling mechanisms
 - Will have to incorporate OldMain.py back into execution with controls
+
+Race 0.12
+=========
+- Migrated oldMain.py back into Main.py using the new game loop
+- Added EventHandler.py to directory
+	- Handles event input within the game loop
+- Currently have dummy display, need to print level to screen
