@@ -1,29 +1,29 @@
-# Racer.py
-# Manages the properties and actions of a Racer
-class Racer(object):
-	'Manages the properties and actions of a Racer'
+# Player.py
+# Manages the properties and actions of the Player
+class Player(object):
+	'Manages the properties and actions of the Player'
 
-	# Racer(self)
-	# Initializes empty Racer
+	# Player(self)
+	# Initializes empty Player
 	def __init(self):
-		print(":Constructor:Empty Racer")
+		print(":Constructor:Empty Player")
 		
-	# Racer(self, x, y)
-	# Initializes Racer with position[x,y]
+	# Player(self, x, y)
+	# Initializes Player with position[x,y]
 	def __init__(self, x, y):
 
 		# Debug info
 		self.DEBUG=1
-		self.DEBUG_TAG="[Racer]"
+		self.DEBUG_TAG="[Player]"
 		
 		if (self.DEBUG == 1):
-			print(self.DEBUG_TAG + ":Constructor:Racer:" + str(x) + ":" + str(y))		
+			print(self.DEBUG_TAG + ":Constructor:Player:" + str(x) + ":" + str(y))		
 
 		# Variables
 		self.curr_pos=[x,y]
 
 	# info(self)
-	# This function is used for debugging and shows Racer data
+	# This function is used for debugging and shows Player data
 	def info(self):
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":info")
@@ -40,7 +40,7 @@ class Racer(object):
 		return self.curr_pos[1]
 
 	# getPosition(self)
-	# Returns current Racer position
+	# Returns current Player position
 	def getPosition(self):
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":getPosition:" + str(self.curr_pos[0]) + ":" + str(self.curr_pos[1]))		

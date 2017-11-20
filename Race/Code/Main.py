@@ -12,7 +12,7 @@ from LevelBuilder import *
 # Game Info
 GAME_X_DIM=800
 GAME_Y_DIM=600
-GAME_TITLE="RACE 0.12"
+GAME_TITLE="RACE 0.13"
 
 class Main(object):
 	'launches the game'	
@@ -56,33 +56,58 @@ class Main(object):
 
 		# Game loop
 		while True:
+			
+			if (self.DEBUG == 1):
+				print(self.DEBUG_TAG + " = = = = = = = = = = = = = = = = = =")
+
+			# Captures events and handles them
 			for event in pygame.event.get():
           
 				# Event handler called
 				self.event_handler.handleEvent(event)
-       		
-			pygame.draw.rect(self.display_surface, (0, 255, 0), pygame.Rect(0, 0, 60, 60))
+
+			# Update Entities
+			self.update()
+	
+			# Draw Entities
+			self.draw(curr_level)       		
+
+			# pygame.draw.rect(self.display_surface, (0, 255, 0), pygame.Rect(0, 0, 60, 60))
 			pygame.display.flip()
 			self.clock.tick(60)
 
+	# update(self)
+	# Updates data wrt Entities
+	def update(self):
+		if (DEBUG == 1):
+			print(self.DEBUG_TAG + ":update")
 
-	# draw(self)
+	# draw(self, curr_level)
 	# Prints to the Screen
 	def draw(self, curr_level):
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":draw")
 		
-		# Draw Walls
-		for wall in curr_level.getWalls():
-			print("WALL")
+		# Draw the Walls
+		if (DEBUG == 1):
+			print(self.DEBUG_TAG + ":draw:Walls")
+		
+		wall_list=curr_level.getWalls()
+		for x in range(len(wall_list)):
+			y=wall_list[x]
+			y.printWall()
+			pygame.draw.rect(self.display_surface,(169, 169, 169),  y.getHitbox(), 0)
+		
+		# Draw the Entities
+		if (DEBUG == 1):
+			print(self.DEBUG_TAG + ":draw:Entities")
 
-		# Draw entities
-		for entity in curr_level.getEntities():
-			print("ENTITY")
-
-		# Print Level	
-		print(curr_level)
-
+		entity_list=curr_level.getEntities()
+		for x in range(len(entity_list)):
+			y=entity_list[x]
+			y.info()
+			pygame.draw.circle(self.display_surface, (0, 255, 0), (y.getX() + 50, y.getY() + 50), 100, 0)
+	
 # Execute the Game
 main=Main()
 main.start()

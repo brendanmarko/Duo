@@ -1,6 +1,9 @@
 # Wall.py
 # Manipulates/Creates the Wall object in the game world
 
+# Imports
+import pygame
+
 class Wall(object):
 	'Manipulates/Creates the Wall object in the game world'
 
@@ -23,7 +26,16 @@ class Wall(object):
 		# No row/column collision occured
 		return 0;
 		
-		
+	# printWall(self)
+	# Prints the positions of the wall
+	def printWall(self):
+		print(self.DEBUG_TAG + ":printWall")
+		print("[" + str(self.row_range[0]) + "," + str(self.col_range[0]) + "]--->[" + str(self.row_range[1]) + "," + str(self.col_range[1]) + "]")
+
+	# getHitbox(self):
+	# Returns the Rect box that denotes a Wall
+	def getHitbox(self):
+		return self.hitbox
 
 	# Wall(self, start, close)
 	# Begins the build process of the Wall
@@ -45,6 +57,9 @@ class Wall(object):
 		# These values will update wrt which direction the span moves
 		self.row_range[1]=root_row
 		self.col_range[1]=self.col_range[0]+span
+
+		# Build Rect
+		self.hitbox=pygame.Rect(self.row_range[0], self.col_range[0], 800, 200)
 
 		if (self.DEBUG == 1):
 			print(self.DEBUG_TAG + ":Constructor:" + str(root_row) + ":" + str(root_col) + ":" + str(span))

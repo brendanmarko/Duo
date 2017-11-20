@@ -9,3 +9,12 @@ Race 0.12
 - Added EventHandler.py to directory
 	- Handles event input within the game loop
 - Currently have dummy display, need to print level to screen
+
+Race 0.13
+=========
+- Main.py game loop processes the Entities/Walls passed via the Level
+	- Requires shapes to be added to the Entities for proper drawing
+- Added Player.py; functions the same as Racer.py for now
+- Entities need to be properly positioned
+	- Requires calculating Level coordinates into game world coordinates
+- Entity.py added; inheritance to be added for Racer/Player 
