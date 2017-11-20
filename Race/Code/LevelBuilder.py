@@ -79,7 +79,7 @@ class LevelBuilder:
 		elif (char == 'p'):
 			print(self.DEBUG_TAG + ":Player")
 			new_player=Player(self.curr_reader_pos[0], self.curr_reader_pos[1])
-			#self.entity_list.append(new_player)
+			self.entity_list.append(new_player)
 
 		elif (char == 'd'):
 			print("Destructible found.")

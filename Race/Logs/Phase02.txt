@@ -18,3 +18,13 @@ Race 0.13
 - Entities need to be properly positioned
 	- Requires calculating Level coordinates into game world coordinates
 - Entity.py added; inheritance to be added for Racer/Player 
+
+Race 0.14a
+==========
+- Added Position.py, Entity.py, ObjectData.py
+- ObjectData.py serves as information holder for objects
+	- Holds information such as w, h, speed
+- Implemented inhieritance using Entity.py
+	- Super for Player/Racer
+- Need to scale objects to properly display on screen
+	- Need to decide on ppm values for display 

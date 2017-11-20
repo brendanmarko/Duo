@@ -12,7 +12,7 @@ from LevelBuilder import *
 # Game Info
 GAME_X_DIM=800
 GAME_Y_DIM=600
-GAME_TITLE="RACE 0.13"
+GAME_TITLE="RACE 0.14"
 
 class Main(object):
 	'launches the game'	
@@ -105,7 +105,6 @@ class Main(object):
 		entity_list=curr_level.getEntities()
 		for x in range(len(entity_list)):
 			y=entity_list[x]
-			y.info()
 			pygame.draw.circle(self.display_surface, (0, 255, 0), (y.getX() + 50, y.getY() + 50), 100, 0)
 	
 # Execute the Game
