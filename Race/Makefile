@@ -14,7 +14,7 @@ run:
 
 ## Uploads project changes to master:tester
 ## Requirements: arg=new_commit_name
-## ie) make ut arg="Race0.00"
+## ie) make ut arg="Race 0.00"
 ut:
 	@echo "[Uploading changes to Tester]"
 	@git add .
@@ -23,7 +23,7 @@ ut:
 	
 ## Uploaps project changes to master
 ## Requirements: arg=new_commit_name
-## ie) make um arg="Race0.00"
+## ie) make um arg="Race 0.00"
 um:
 	@echo "[Uploading changes to Master]"
 	@git add .

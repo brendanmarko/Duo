@@ -27,4 +27,12 @@ Race 0.14a
 - Implemented inhieritance using Entity.py
 	- Super for Player/Racer
 - Need to scale objects to properly display on screen
-	- Need to decide on ppm values for display 
+	- Need to decide on ppm values for display
+
+Race 0.14b
+==========
+- Added PPM values to LevelBuilder.py
+  - PPM is passed into objects to be properly scaled when drawn
+  - This approach retains the initial level values of GameObjects
+	  - Entities contain proper game world positions wrt ppm
+- Properly displays objects in game world wrt ppm/pos 
