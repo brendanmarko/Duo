@@ -1,17 +1,17 @@
-Race 0.11
-=========
+Race0.11
+========
 - Added basic controlling mechanisms
 - Will have to incorporate OldMain.py back into execution with controls
 
-Race 0.12
-=========
+Race0.12
+========
 - Migrated oldMain.py back into Main.py using the new game loop
 - Added EventHandler.py to directory
 	- Handles event input within the game loop
 - Currently have dummy display, need to print level to screen
 
-Race 0.13
-=========
+Race0.13
+========
 - Main.py game loop processes the Entities/Walls passed via the Level
 	- Requires shapes to be added to the Entities for proper drawing
 - Added Player.py; functions the same as Racer.py for now
@@ -19,8 +19,8 @@ Race 0.13
 	- Requires calculating Level coordinates into game world coordinates
 - Entity.py added; inheritance to be added for Racer/Player 
 
-Race 0.14a
-==========
+Race0.14a
+=========
 - Added Position.py, Entity.py, ObjectData.py
 - ObjectData.py serves as information holder for objects
 	- Holds information such as w, h, speed
@@ -29,10 +29,20 @@ Race 0.14a
 - Need to scale objects to properly display on screen
 	- Need to decide on ppm values for display
 
-Race 0.14b
-==========
+Race0.14b
+=========
 - Added PPM values to LevelBuilder.py
   - PPM is passed into objects to be properly scaled when drawn
   - This approach retains the initial level values of GameObjects
 	  - Entities contain proper game world positions wrt ppm
-- Properly displays objects in game world wrt ppm/pos 
+- Properly displays objects in game world wrt ppm/pos
+
+Race0.15
+======== 
+- Changes wrt Entity was required to implement movement
+  - The addition of MovementHandler will allow entities that can move the ability to initiate move behavior
+- The addition of MovementHandler.py was supposed to be an interface but apparently Python does not have them (?)
+  - Further research will be needed to see the best way to implement an interface since a class is not needed
+  - However, the current MovementHandler.py will serve as a placeholder
+- The addition of MovableEntity.py represents entities that will be able to receive movement behavior
+- Changed the structure of Racer.py and Player.py to be created as MovableEntity instead of Entity

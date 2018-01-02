@@ -2,17 +2,17 @@
 # Manages the properties and actions of the Player
 
 # Imports
-from Entity import *
+from MovableEntity import *
 
 # Debug info
 DEBUG=1
 DEBUG_TAG="[Player]"
 
-class Player(Entity):
+class Player(MovableEntity):
   'Manages the properties and actions of the Player'
   
   # Player(self, x, y)
   # Initializes Player with position[x,y]
   def __init__(self, x, y, ppm):    
     self.object_type='p'
-    Entity.__init__(self, x, y, self.object_type, ppm)
+    MovableEntity.__init__(self, x, y, self.object_type, ppm)

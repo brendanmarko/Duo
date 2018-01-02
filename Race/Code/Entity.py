@@ -43,7 +43,7 @@ class Entity(object):
     return self.height 
 
   # calculateHitbox(x, y, width, height)
-  # Builds the hitbox for the Entity; put as its own function incase more funcionality is needed
+  # Builds the hitbox for the Entity; put as its own function incase more functionality is needed
   def calculateHitbox(self, x, y, width, height):
     self.hitbox=pygame.Rect(x, y, width, height)
     if (DEBUG == 1):
