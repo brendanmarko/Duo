@@ -18,5 +18,22 @@ class MovableEntity(Entity):
     self.movement_controls=MovementHandler()
     Entity.__init__(self, x, y, object_type, ppm)
 
+    self.setMovable(True)
+
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":Fin")
+
+  ### Movement Management
+  ##  Handles updating entity position and hitbox 
+  def update(self):
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":update")
+    displacement=self.movement_controls.calcDisplacement(self.getSpeed(), 'E')
+    # displacement=self.movement_controls.calcDisplacement(self.getSpeed(), self.getDirection())
+    self.updatePosition(displacement)
+    self.updateHitbox() 
+    
+    if (self.DEBUG == 1):
+      displacement.printPos()
+
+  ### end : Movement Management

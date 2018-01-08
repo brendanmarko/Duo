@@ -39,10 +39,24 @@ Race0.14b
 
 Race0.15
 ======== 
-- Changes wrt Entity was required to implement movement
+- Changes wrt Entity were required to implement movement
   - The addition of MovementHandler will allow entities that can move the ability to initiate move behavior
 - The addition of MovementHandler.py was supposed to be an interface but apparently Python does not have them (?)
   - Further research will be needed to see the best way to implement an interface since a class is not needed
   - However, the current MovementHandler.py will serve as a placeholder
 - The addition of MovableEntity.py represents entities that will be able to receive movement behavior
 - Changed the structure of Racer.py and Player.py to be created as MovableEntity instead of Entity
+
+Race0.15b
+=========
+- Further changes made to Entity
+  - Inherits from pygame.sprite.Sprite now
+  - Will allow use with 'Groups' in Main.py wrt Walls/Entities/Other
+  - Loads image from .png file 
+  - Began work upon update()
+    -- handles movement of Entity during frames
+- Adjustments made within Main.py and MovableEntity.py as well
+
+Race0.15c
+=========
+-   

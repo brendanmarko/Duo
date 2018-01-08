@@ -1,6 +1,9 @@
 # MovementHandler.py
 # Handles movement wrt entities
 
+# Imports
+from Position import *
+
 class MovementHandler(object):
   'Handles movement wrt entities'
 
@@ -12,18 +15,27 @@ class MovementHandler(object):
     if (self.DEBUG == 1): 
       print(self.DEBUG_TAG + ":Created")
 
-  def initMovement(self):
+  def calcDisplacement(self, speed, direction):
     if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Starting movement")  
+      print(self.DEBUG_TAG + ":Calculating displacement")  
+    
+    # Displacement values
+    if (speed == 0):
+      displacement=Position(0,0)
+      return displacement
+    if (direction == 'E'):
+      displacement=Position(speed, 0)
+      return displacement
+    elif (direction == 'N'):
+      displacement=Position(0, 0-speed)
+      return displacement
+    elif (direction == 'S'):
+      displacement=Position(0, speed)
+      return displacement
+    elif (direction == 'W'):
+      displacement=Position(0-speed, 0)
+      return displacement
 
   def stopMovement(self):
     if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Stopping movementd")  
-
-  def moveForward(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Forward movement detected")  
-  
-  def moveReverse(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Reverse movement detected")  
+      print(self.DEBUG_TAG + ":Stopping movement")  

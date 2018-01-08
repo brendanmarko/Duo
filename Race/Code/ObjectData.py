@@ -29,6 +29,8 @@ class ObjectData(object):
     # Variables
     self.dim=Position(0,0)
     self.color=C_BLK
+    self.speed=0
+    self.name='none'
 
     # Build object
     self.buildObject(input_char)
@@ -40,24 +42,36 @@ class ObjectData(object):
     if (input_char == 'p'):
       width=1
       height=1
+      self.name='player'
       self.color=C_GRN
-      self.dim.updateData(width, height)
+      self.dim.updateStorage(width, height)
+
+      # Speed
+      self.speed=3
 
     elif (input_char == 'r'):
       width=1
       height=1
+      self.name='racer'
       self.color=C_RED
-      self.dim.updateData(width, height)
+      self.dim.updateStorage(width, height)
   
+      # Speed
+      self.speed=2
+
     elif (input_char == 'w'):
       width=1
       height=1
+      self.name='wall'
       self.color=C_GRY
-      self.dim.updateData(width, height)
+      self.dim.updateStorage(width, height)
 
   # Helpers
   def getDims(self):
     return self.dim  
-  
+  def getName(self):
+    return self.name
   def getColor(self):
     return self.color
+  def getSpeed(self):
+    return self.speed
