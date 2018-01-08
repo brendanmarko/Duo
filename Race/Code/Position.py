@@ -5,7 +5,7 @@ class Position(object):
   'serves as storage for a position (or any structure with two points)'
 
   def __init__(self, x, y):
-
+    # Debug info
     self.DEBUG=1
     self.DEBUG_TAG="[Position]"
 

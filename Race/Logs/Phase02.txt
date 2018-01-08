@@ -59,4 +59,8 @@ Race0.15b
 
 Race0.15c
 =========
--   
+- Images are properly scaled to their dimensions given within ObjectData.py
+- MovableEntity.py now supports the variable 'direction'
+  - Direction allows entities to direct their movement 
+- EventHandler.py handles the rotation of MovableEntity in E and W directions
+  - Requires some adjustment to lower the speed  

@@ -41,23 +41,23 @@ class ObjectData(object):
 
     if (input_char == 'p'):
       width=1
-      height=1
+      height=2
       self.name='player'
       self.color=C_GRN
       self.dim.updateStorage(width, height)
 
       # Speed
-      self.speed=3
+      self.speed=1
 
     elif (input_char == 'r'):
       width=1
-      height=1
+      height=2
       self.name='racer'
       self.color=C_RED
       self.dim.updateStorage(width, height)
   
       # Speed
-      self.speed=2
+      self.speed=1
 
     elif (input_char == 'w'):
       width=1
@@ -69,9 +69,12 @@ class ObjectData(object):
   # Helpers
   def getDims(self):
     return self.dim  
+
   def getName(self):
     return self.name
+
   def getColor(self):
     return self.color
+
   def getSpeed(self):
     return self.speed

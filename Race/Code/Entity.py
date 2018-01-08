@@ -9,7 +9,7 @@ from Position import *
 from ObjectData import *
 
 class Entity(pygame.sprite.Sprite):
-  'base class for in-game objects; uses Sprites'
+  'Base class for in-game objects; uses Sprites'
 
   def __init__(self, x, y, object_type, ppm):     
     pygame.sprite.Sprite.__init__(self)
@@ -20,7 +20,7 @@ class Entity(pygame.sprite.Sprite):
     self.height=self.info.getDims().getY()*ppm.getY()
 
     # Loads image file corresponding to object name
-    self.image=pygame.image.load('Resources/Images/' + self.info.getName() + '.png').convert_alpha()
+    self.image=pygame.image.load('Resources/Images/' + self.info.getName() + '.png').convert()
     
     # Debug info
     self.DEBUG=1
@@ -51,17 +51,18 @@ class Entity(pygame.sprite.Sprite):
   def updatePosition(self, displacement):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":updatePosition")
-      print(self.DEBUG_TAG + ":preUpdate [X=" + str(self.x) + ", [Y=" + str(self.y) + "]")
+      print(self.DEBUG_TAG + ":preUpdate [X=" + str(self.x) + ", Y=" + str(self.y) + "]")
 
     self.x+=(displacement.getX()*self.e_ppm.getX())
     self.y+=(displacement.getY()*self.e_ppm.getY())
     self.position.updateStorage(self.x, self.y)
 
     if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":newUpdate [X=" + str(self.x) + ", [Y=" + str(self.y) + "]")
+      print(self.DEBUG_TAG + ":newUpdate [X=" + str(self.x) + ", Y=" + str(self.y) + "]")
 
   ##### end : Position functions
 
+  ##### Dimensions & Images 
   def getImage(self):
     return self.image
 
@@ -70,6 +71,8 @@ class Entity(pygame.sprite.Sprite):
 
   def getHeight(self):
     return self.height 
+
+  ##### end : Dimensions & Images 
 
   ##### Movable Status 
   def setMovable(self, movable_status):
@@ -88,7 +91,7 @@ class Entity(pygame.sprite.Sprite):
  
   ##### Hitbox functions 
   # calculateHitbox(x, y, width, height)
-  # Builds the hitbox for the Entity; put as its own function incase more functionality is needed
+  # Builds the hitbox for the Entity; separate function (incase more functionality is needed)
   def calculateHitbox(self, x, y, width, height):
     self.hitbox=pygame.Rect(x, y, width, height)
     if (self.DEBUG == 1):

@@ -10,9 +10,10 @@ from EventHandler import *
 from LevelBuilder import *
 
 # Game Info
+GAME_FPS=30
 GAME_X_DIM=800
 GAME_Y_DIM=600
-GAME_TITLE="RACE 0.155555"
+GAME_TITLE="RACE 0.15c"
 
 class Main(object):
   'launches the game'  
@@ -20,6 +21,7 @@ class Main(object):
   def __init__(self):
     # Variables
     self.level_num=""
+    self.curr_player=None
 
     # Debug info
     self.DEBUG=1
@@ -43,12 +45,13 @@ class Main(object):
 
     # Build Level
     self.lvl_builder=LevelBuilder(self.level_num)
+    self.curr_player=self.lvl_builder.getPlayer()
 
   def start(self):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":start")
     
-    self.gameLoop(self.lvl_builder.getLevel())
+    self.gameLoop(self.lvl_builder.getLevel())    
 
   def gameLoop(self, curr_level):
     if (self.DEBUG == 1):
@@ -60,11 +63,14 @@ class Main(object):
       if (self.DEBUG == 1):
         print(self.DEBUG_TAG + " = = = = = = = = = = = = = = = = = =")
 
+      # Fill background
+      self.display_surface.fill((0, 0, 0))
+
       # Captures events and handles them
       for event in pygame.event.get():
-        self.event_handler.handleEvent(event)
+        self.event_handler.handleEvent(event, self.curr_player)
 
-      # Update Entities
+      # Update
       self.update(curr_level)
  
       self.display_surface.unlock()
@@ -74,9 +80,9 @@ class Main(object):
 
       self.display_surface.lock()
 
-      # Game loop update information
-      pygame.display.flip()
-      self.clock.tick(60)
+      # Display update
+      pygame.display.update()
+      pygame.time.Clock().tick(GAME_FPS)
 
   # update(self, curr_level)
   # Updates data wrt Entities
@@ -87,8 +93,8 @@ class Main(object):
     
     for x in range(len(entity_list)):
       y=entity_list[x]
-#      if (y.getMovable() == True):
-#        y.update()
+      if (y.getMovable() == True):
+        y.update()
 
   # draw(self, curr_level)
   # Prints to the Screen
@@ -112,9 +118,12 @@ class Main(object):
       print(self.DEBUG_TAG + ":draw:Entities:" + str(len(entity_list)))
     for x in range(len(entity_list)):
       y=entity_list[x]
-      
-			# Blits (draws) entity to surface
-      self.display_surface.blit(y.getImage(), (y.getX(), y.getY()))
+
+			# Scale image to proper size
+      scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
+
+      # Blits (draws) entity to surface
+      self.display_surface.blit(scaled_image, (y.getX(), y.getY()))
   
 # Execute the Game
 main=Main()

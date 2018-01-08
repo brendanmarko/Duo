@@ -16,7 +16,7 @@ class WallBuilder(object):
     self.DEBUG=1
     self.DEBUG_TAG="[WallBuilder]"
 
-		# PPM
+    # PPM
     self.ppm=ppm
 
     # Variables

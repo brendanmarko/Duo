@@ -32,6 +32,9 @@ class LevelBuilder:
     self.file_path="Levels/Level" + level + ".txt"  
     self.curr_reader_pos=[0,0]
 
+    # Player 
+    self.player=None
+
 		# PPM
     self.ppm=Position(PPM_X, PPM_Y)
 
@@ -85,8 +88,9 @@ class LevelBuilder:
 
     elif (char == 'p'):
       print(self.DEBUG_TAG + ":Player")
-      new_player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-      self.entity_list.append(new_player)
+      self.player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
+      self.entity_list.append(self.player)
+      
 
     elif (char == 'd'):
       print("Destructible found.")
@@ -161,3 +165,8 @@ class LevelBuilder:
   # Returns the list containing the current Level
   def getLevelList(self):
     return self.level_storage
+
+  # getPlayer(self)
+  # Returns player object
+  def getPlayer(self):
+    return self.player
