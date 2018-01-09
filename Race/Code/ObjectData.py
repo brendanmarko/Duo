@@ -3,10 +3,6 @@
 # Imports
 from Position import *
 
-# Debug info
-DEBUG=1
-DEBUG_TAG="[ObjectData]"
-
 # Colors
 C_GRN=(0, 255, 0)
 C_WHT=(255, 255, 255)
@@ -23,8 +19,12 @@ class ObjectData(object):
   'stores information regarding game world objects'
   
   def __init__(self, input_char):
-    if (DEBUG == 1):
-      print(DEBUG_TAG + ":init")
+    # Debug info
+    self.DEBUG=1
+    self.DEBUG_TAG="[ObjectData]"
+    
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":init")
 
     # Variables
     self.dim=Position(0,0)
@@ -36,8 +36,8 @@ class ObjectData(object):
     self.buildObject(input_char)
     
   def buildObject(self, input_char):
-    if (DEBUG == 1):
-      print(DEBUG_TAG + ":buildObject:" + str(input_char))
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":buildObject:" + str(input_char))
 
     if (input_char == 'p'):
       width=1
@@ -47,7 +47,7 @@ class ObjectData(object):
       self.dim.updateStorage(width, height)
 
       # Speed
-      self.speed=1
+      self.speed=0.15
 
     elif (input_char == 'r'):
       width=1
@@ -57,7 +57,7 @@ class ObjectData(object):
       self.dim.updateStorage(width, height)
   
       # Speed
-      self.speed=1
+      self.speed=0.125
 
     elif (input_char == 'w'):
       width=1

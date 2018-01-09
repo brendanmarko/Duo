@@ -20,7 +20,7 @@ class Entity(pygame.sprite.Sprite):
     self.height=self.info.getDims().getY()*ppm.getY()
 
     # Loads image file corresponding to object name
-    self.image=pygame.image.load('Resources/Images/' + self.info.getName() + '.png').convert()
+    self.image=pygame.image.load('Resources/Images/' + self.info.getName() + '.png').convert_alpha()
     
     # Debug info
     self.DEBUG=1
@@ -88,6 +88,17 @@ class Entity(pygame.sprite.Sprite):
     return self.speed
 
   ##### end : Movable Status
+
+  ##### Rotations
+  def rotateCW(self):
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":rotateCW")
+
+  def rotateCCW(self):
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":rotateCCW")
+
+  ##### end : Rotations
  
   ##### Hitbox functions 
   # calculateHitbox(x, y, width, height)

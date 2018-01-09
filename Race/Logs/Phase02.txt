@@ -64,3 +64,12 @@ Race0.15c
   - Direction allows entities to direct their movement 
 - EventHandler.py handles the rotation of MovableEntity in E and W directions
   - Requires some adjustment to lower the speed  
+
+Race0.16a
+=========
+- Added more detailed EventHandler.py functions to handle player movement via keyboard
+  - Movement is handled in N, S, W, and E properly
+- MovableEntity.py and Entity.py gained further functionality
+  - MovableEntity now handles the move_direction it is travelling in
+  - Entity is capable provided CW/CWW rotation ability
+    - This will be utilized later for aim_direction

@@ -21,7 +21,7 @@ class MovableEntity(Entity):
     self.setMovable(True)
 
     # Direction
-    self.direction='E'
+    self.move_direction='E'
 
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":Fin")
@@ -31,21 +31,30 @@ class MovableEntity(Entity):
   def update(self):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":update")
-    displacement=self.movement_controls.calcDisplacement(self.getSpeed(), self.direction)
+    displacement=self.movement_controls.calcDisplacement(self.getSpeed(), self.move_direction)
     self.updatePosition(displacement)
     self.updateHitbox() 
     
     if (self.DEBUG == 1):
       displacement.printPos()
 
-  def rotateEast(self):
+  def moveE(self):
     if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateEast")
-    self.direction='E'
+      print(self.DEBUG_TAG + ":moveE")
+    self.move_direction='E'
 
-  def rotateWest(self):
+  def moveW(self):
     if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateWest")
-    self.direction='W'
+      print(self.DEBUG_TAG + ":moveW")
+    self.move_direction='W'
+  
+  def moveN(self):
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":moveN")
+    self.move_direction='N'
 
+  def moveS(self):
+    if (self.DEBUG == 1):
+      print(self.DEBUG_TAG + ":moveS")
+    self.move_direction='S'
   ### end : Movement Management
