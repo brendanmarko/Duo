@@ -41,7 +41,8 @@ class LevelBuilder:
     self.player=None
 
 	# PPM
-    self.ppm=Position(PPM_X, PPM_Y)
+#    self.ppm=Position(PPM_X, PPM_Y)
+    self.ppm=Position(0,0)
 
     # WallBuilder
     self.wall_builder=WallBuilder(0, 0, self.ppm)
@@ -149,8 +150,7 @@ class LevelBuilder:
 
     # setup(self)
     # Performs LevelBuilder setup
-  def setup(self):
-    
+  def setup(self): 
     curr_file=open(self.file_path, "r")
        
     # Reads lines from LevelXX
@@ -183,3 +183,8 @@ class LevelBuilder:
   # Returns player object
   def getPlayer(self):
     return self.player
+
+  # setPixelSize(self, ppm_x, ppm_y)
+  # Sets PPM for LevelBuilder
+  def setPixelSize(self, ppm_x, ppm_y):
+    self.ppm.updatePosition(ppm_x, ppm_y)  

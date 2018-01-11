@@ -25,7 +25,7 @@ class EntityMgr(object):
     self.w_group=CustomGroup()
 
     # PPM
-    self.ppm=Position()
+    self.ppm=Position(0,0)
 
   # Must be called during initialization
   def setPixelSize(self, ppm_x, ppm_y):

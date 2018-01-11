@@ -78,8 +78,7 @@ class Main(object):
         self.event_handler.handleEvent(event, self.curr_player)
 
       # Update
-      self.update(curr_level)
- 
+      self.update(curr_level) 
       self.display_surface.unlock()
  
       # Draw Entities

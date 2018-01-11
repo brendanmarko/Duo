@@ -11,7 +11,6 @@ class Position(object):
 
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":init")
-
     self.curr_pos=[x,y]
 
   def getX(self):

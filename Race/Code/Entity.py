@@ -10,16 +10,7 @@ from ObjectData import *
 
 class Entity(pygame.sprite.Sprite):
   'Base class for in-game objects; uses Sprites'
-
-  '''
-  # __init__
-  # Given x and y coordinates, width and height
-  def __init__(self, x, y, width, height):
-    pygame.sprite.Sprite.__init__self(self)
-    self.width=width
-    self.height=height
-  '''
-
+  
   # __init__
   # Given x and y coordinates, object type char and ppm
   def __init__(self, x, y, object_type, ppm):     
