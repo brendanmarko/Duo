@@ -40,7 +40,7 @@ class LevelBuilder:
     # Player 
     self.player=None
 
-		# PPM
+	# PPM
     self.ppm=Position(PPM_X, PPM_Y)
 
     # WallBuilder

@@ -6,10 +6,13 @@ import pygame
 
 # Class imports
 from time import sleep
+from EntityMgr import *
 from EventHandler import *
 from LevelBuilder import *
 
 # Game Info
+PPM_X=32
+PPM_Y=18
 GAME_FPS=30
 GAME_X_DIM=800
 GAME_Y_DIM=600
@@ -45,7 +48,12 @@ class Main(object):
 
     # Build Level
     self.lvl_builder=LevelBuilder(self.level_num)
+    self.lvl_builder.setPixelSize(PPM_X, PPM_Y)
     self.curr_player=self.lvl_builder.getPlayer()
+
+    # Init Mgrs
+    self.entity_mgr=EntityMgr()
+    self.entity_mgr.setPixelSize(PPM_X, PPM_Y)
 
   def start(self):
     if (self.DEBUG == 1):
@@ -58,8 +66,7 @@ class Main(object):
       print(self.DEBUG_TAG + ":gameLoop")
 
     # Game loop
-    while True:
-      
+    while True:  
       if (self.DEBUG == 1):
         print(self.DEBUG_TAG + " = = = = = = = = = = = = = = = = = =")
 

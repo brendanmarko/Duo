@@ -1,5 +1,6 @@
 # CustomGroup.py
 # An extension of the standard 'Group' storage container used by sprites
+# Inherits from 'Group' so it has a lot of functionality
 
 import pygame
 
