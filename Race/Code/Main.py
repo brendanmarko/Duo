@@ -91,8 +91,7 @@ class Main(object):
       print(self.DEBUG_TAG + ":update")  
     entity_list=curr_level.getEntities()
     
-    for x in range(len(entity_list)):
-      y=entity_list[x]
+    for y in entity_list: 
       if (y.getMovable() == True):
         y.update()
 
@@ -104,7 +103,7 @@ class Main(object):
     
     # Draw the Walls
     if (DEBUG == 1):
-      print(self.DEBUG_TAG + ":draw:Walls:" + str(len(curr_level.getWalls())))
+      print(self.DEBUG_TAG + ":draw:Walls" + str(len(curr_level.getWalls())))
     
     wall_list=curr_level.getWalls()
     for x in range(len(wall_list)):
@@ -113,16 +112,18 @@ class Main(object):
       pygame.draw.rect(self.display_surface, (169, 169, 169),  y.getHitbox(), 0)
     
     # Draw the Entities
-    entity_list=curr_level.getEntities()
     if (DEBUG == 1):
-      print(self.DEBUG_TAG + ":draw:Entities:" + str(len(entity_list)))
-    for x in range(len(entity_list)):
-      y=entity_list[x]
+      print(self.DEBUG_TAG + ":draw:Entities")
 
-			# Scale image to proper size
+    # Loop over group_e and draw 
+    for y in curr_level.getEntities():
+			# Scale image to proper size and draw/blit it
       scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
+      self.display_surface.blit(scaled_image, (y.getX(), y.getY()))
 
-      # Blits (draws) entity to surface
+    # Display POIs
+    for y in curr_level.getPOIs(): 
+      scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
       self.display_surface.blit(scaled_image, (y.getX(), y.getY()))
   
 # Execute the Game

@@ -11,6 +11,17 @@ from ObjectData import *
 class Entity(pygame.sprite.Sprite):
   'Base class for in-game objects; uses Sprites'
 
+  '''
+  # __init__
+  # Given x and y coordinates, width and height
+  def __init__(self, x, y, width, height):
+    pygame.sprite.Sprite.__init__self(self)
+    self.width=width
+    self.height=height
+  '''
+
+  # __init__
+  # Given x and y coordinates, object type char and ppm
   def __init__(self, x, y, object_type, ppm):     
     pygame.sprite.Sprite.__init__(self)
 
@@ -34,12 +45,12 @@ class Entity(pygame.sprite.Sprite):
 
     # Movable flag
     self.movable=False
-  
-    # Speed
-    self.speed=self.info.getSpeed()
 
     # Hitbox setup
     self.calculateHitbox(self.x, self.y, self.width, self.height)
+
+  def getInfo(self):
+    return self.info
 
   ##### Position functions
   def getX(self):

@@ -73,3 +73,19 @@ Race0.16a
   - MovableEntity now handles the move_direction it is travelling in
   - Entity is capable provided CW/CWW rotation ability
     - This will be utilized later for aim_direction
+
+Race0.16b
+=========
+- Level.py
+  -- Levels separately build storage for each of the entities
+  -- Allows us to incorporate the usage of 'Groups' instead of lists!
+  -- Group structure will include 4 Groups to begin:
+     --- [Walls, Entities, Endpoints, All]
+- CustomGroup.py
+  -- Will inherit from pygame.sprite.Group and act as storage for sprites
+  -- Allows custom functionality to be added to Group
+- Endpoint.py
+  -- Represents exit condition for level
+  -- When player reaches endpoint, the level ends
+- Entity.py
+  -- Moved speed to MovableEntity

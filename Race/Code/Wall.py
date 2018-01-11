@@ -1,8 +1,11 @@
 # Wall.py
 # Manipulates/Creates the Wall object in the game world
 
-# Imports
+# Library imports
 import pygame
+
+# Class imports
+from Entity import *
 
 # Debug info
 DEBUG=1
@@ -19,15 +22,6 @@ class Wall(object):
 
     # Build Wall (L, T, W, H)
     self.hitbox=pygame.Rect(x, y, span_x, span_y)
-
-  # collisionCheck(self, pos)
-  # Checks if an object is colliding with the Wall
-  def collisionCheck(self, pos):
-    if (DEBUG == 1):
-      print(DEBUG_TAG + ":collisionCheck")
-
-    # No row/column collision occured
-    return 0;
     
   # printWall(self)
   # Prints the positions of the wall

@@ -1,10 +1,15 @@
 # LevelBuilder.py
 # Reads in Level data and populates a collection to store the Level layout
 
-# Imports
+# Library imports
+import pygame
+
+# Class Imports
 from Level import *
 from Racer import *
 from Player import *
+from Endpoint import *
+from CustomGroup import *
 from WallBuilder import *
 
 # PPM Values
@@ -14,12 +19,12 @@ PPM_Y=18
 class LevelBuilder:
   'Reads in Level data and populates a collection to store the Level layout'
     
-    # Constructor(self)
+  # Constructor(self)
   def __init__(self):
     print("LevelBuilder created.")
 
-    # Constructor (self, level)
-    # This constructor takes a String; the level to be loaded
+  # Constructor (self, level)
+  # This constructor takes a String; the level to be loaded
   def __init__(self, level):
     print("LevelBuilder created with: " + level)  
 
@@ -43,7 +48,10 @@ class LevelBuilder:
 
     # Storage
     self.wall_list=[]
-    self.entity_list=[]
+
+    # Switching to CustomGroup
+    self.group_e=CustomGroup() 
+    self.group_poi=CustomGroup()
 
     # File path check
     if (self.DEBUG == 1):
@@ -52,8 +60,8 @@ class LevelBuilder:
     # Further setup steps
     self.curr_level=self.setup()
 
-    # printLayout(self)
-    # Prints current level
+  # printLayout(self)
+  # Prints current level
   def printLayout(self):
     for i in range(len(self.level_storage)):
       print(self.level_storage[i])
@@ -71,7 +79,7 @@ class LevelBuilder:
     elif (char == 'w'):
       print("Wall found.")
 
-      # Previous Wall endpoint created; Wall opened
+      # Previous Wall endpoint created; Wall
       if (self.wall_builder.activeBuild() == 1):
         self.wall_builder.closeWall()
       
@@ -80,17 +88,23 @@ class LevelBuilder:
         self.wall_builder.activateBuilder()
         self.wall_builder.updateStartPosition(self.curr_reader_pos[1], self.curr_reader_pos[0])
 
-    # Handles Racers
+    # Handles racers
     elif (char == 'r'):
       print(self.DEBUG_TAG + ":Racer")
       new_racer=Racer(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-      self.entity_list.append(new_racer)  
+      self.group_e.add(new_racer)
 
+    # Handles player
     elif (char == 'p'):
       print(self.DEBUG_TAG + ":Player")
       self.player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-      self.entity_list.append(self.player)
+      self.group_e.add(self.player)
       
+    # Handles endpoint(s)
+    elif (char == '0'):
+      print("Endpoint found.")
+      new_poi=Endpoint(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
+      self.group_poi.add(new_poi)
 
     elif (char == 'd'):
       print("Destructible found.")
@@ -101,10 +115,9 @@ class LevelBuilder:
 
     else:
       print("Default case.")
-    
 
   # buildGameWorld(self)
-  # Reads from level_storage and builds Objects
+  # Reads from level_storage and builds objects
   def buildGameWorld(self):
     print("[Building Game world]")
 
@@ -112,13 +125,13 @@ class LevelBuilder:
     self.curr_reader_pos[0]=0
     self.curr_reader_pos[1]=0
     
-    # Outer for-loop iterates over rows (Y-axis)
+    # Outer for-loop iterates over rows (y-axis)
     for row in range(len(self.level_storage)):
   
-      # Update row before next columns iteration
+      # Update row before next column iteration
       self.curr_reader_pos[0]=row
 
-      # Inner for-loop iterates over columns (X-axis)
+      # Inner for-loop iterates over columns (x-axis)
       for column in range(len(self.level_storage[row])):    
         # Update column value before next row
         self.curr_reader_pos[1]=column
@@ -151,7 +164,7 @@ class LevelBuilder:
     self.buildGameWorld()
 
     # Build Level
-    self.curr_level=Level(self.wall_list, self.entity_list)  
+    self.curr_level=Level(self.wall_list, self.group_e, self.group_poi)  
     return self.curr_level
 
   # getLevel(self)

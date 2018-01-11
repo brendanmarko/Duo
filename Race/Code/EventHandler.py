@@ -60,7 +60,7 @@ class EventHandler(object):
         print(self.DEBUG_TAG + ":WEST movement captured")
       player.moveW()
 
-		# Handles movement [E]
+    # Handles movement [E]
     elif (pressed[pygame.K_d] or pressed[pygame.K_RIGHT]):
       if (self.DEBUG == 1):
         print(self.DEBUG_TAG + ":EAST movement captured")

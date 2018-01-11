@@ -39,6 +39,7 @@ class ObjectData(object):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":buildObject:" + str(input_char))
 
+    # Player
     if (input_char == 'p'):
       width=1
       height=2
@@ -49,6 +50,7 @@ class ObjectData(object):
       # Speed
       self.speed=0.15
 
+    # Racer
     elif (input_char == 'r'):
       width=1
       height=2
@@ -59,10 +61,19 @@ class ObjectData(object):
       # Speed
       self.speed=0.125
 
+    # Wall
     elif (input_char == 'w'):
       width=1
       height=1
       self.name='wall'
+      self.color=C_GRY
+      self.dim.updateStorage(width, height)
+
+    # Endpoint
+    elif (input_char == 'e'):
+      width=1
+      height=2
+      self.name='endpoint'
       self.color=C_GRY
       self.dim.updateStorage(width, height)
 
