@@ -24,7 +24,7 @@ class LevelBuilder:
     print("LevelBuilder created.")
 
   # Constructor (self, level)
-  # This constructor takes a String; the level to be loaded
+  # Takes int value as string to locate the level: ie) level=00 -> path: /Levels/(Level+level)
   def __init__(self, level):
     print("LevelBuilder created with: " + level)  
 
@@ -40,12 +40,11 @@ class LevelBuilder:
     # Player 
     self.player=None
 
-	# PPM
-#    self.ppm=Position(PPM_X, PPM_Y)
+    # PPM
     self.ppm=Position(0,0)
 
     # WallBuilder
-    self.wall_builder=WallBuilder(0, 0, self.ppm)
+    self.wall_builder=WallBuilder(0, 0)
 
     # Storage
     self.wall_list=[]
@@ -187,4 +186,4 @@ class LevelBuilder:
   # setPixelSize(self, ppm_x, ppm_y)
   # Sets PPM for LevelBuilder
   def setPixelSize(self, ppm_x, ppm_y):
-    self.ppm.updatePosition(ppm_x, ppm_y)  
+    self.ppm.updateStorage(ppm_x, ppm_y)  

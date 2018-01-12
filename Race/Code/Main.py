@@ -81,9 +81,8 @@ class Main(object):
       self.update(curr_level) 
       self.display_surface.unlock()
  
-      # Draw Entities
+      # Draw
       self.draw(curr_level)           
-
       self.display_surface.lock()
 
       # Display update
@@ -115,7 +114,7 @@ class Main(object):
     for x in range(len(wall_list)):
       y=wall_list[x]
       y.printWall()
-      pygame.draw.rect(self.display_surface, (169, 169, 169),  y.getHitbox(), 0)
+      pygame.draw.rect(self.display_surface, (169,169,169),  y.getHitbox(), 0)
     
     # Draw the Entities
     if (DEBUG == 1):
@@ -123,6 +122,9 @@ class Main(object):
 
     # Loop over group_e and draw 
     for y in curr_level.getEntities():
+      # Test Rects
+      pygame.draw.rect(self.display_surface, (169,169,169), y.getHitbox(), 0)
+
 			# Scale image to proper size and draw/blit it
       scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
       self.display_surface.blit(scaled_image, (y.getX(), y.getY()))

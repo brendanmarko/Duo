@@ -10,15 +10,12 @@ class WallBuilder(object):
 
   # WallBuilder(self, row, col)
   # Starts a wall with the leftmost position at (row, col)
-  def __init__(self, row, col, ppm):
+  def __init__(self, row, col):
     print("WallBuilder created.")
       
     # Debug info
     self.DEBUG=1
     self.DEBUG_TAG="[WallBuilder]"
-
-    # PPM
-    self.ppm=ppm
 
     # Variables
     self.x_start=row
@@ -26,7 +23,7 @@ class WallBuilder(object):
     self.active_check=0
     self.x_span=0
     self.y_span=0
-    self.line_type=""
+    self.line_type=''
     
     # Storage
     self.wall_storage=CustomGroup()
@@ -92,7 +89,7 @@ class WallBuilder(object):
 
     # Build Wall; value of y_span still needs to be used for vertical walls later
     new_wall=Wall(self.x_start, self.y_start, self.x_span, self.y_span)
-    self.wall_storage.add(new_wall)
+    #self.wall_storage.add(new_wall)
 
     # Resets the WallBuilder
     self.resetBuilder()

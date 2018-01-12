@@ -18,13 +18,13 @@ class Level(object):
     # Populate level groups
     self.list_w=walls
     self.list_e=entities
-    self.list_poi=points_of_interest
+    self.list_p=points_of_interest
 
   def __repr__(self):
     return self.DEBUG_TAG + ":toString"
 
   def getPOIs(self):
-    return self.list_poi
+    return self.list_p
 
   def getWalls(self):
     return self.list_w
