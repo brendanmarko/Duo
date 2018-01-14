@@ -91,8 +91,7 @@ class Main(object):
       print(self.DEBUG_TAG + ":update")  
     entity_list=curr_level.getEntities()
     
-    for x in range(len(entity_list)):
-      y=entity_list[x]
+    for y in curr_level.getEntities():
       if (y.getMovable() == True):
         y.update()
 
@@ -116,9 +115,7 @@ class Main(object):
     entity_list=curr_level.getEntities()
     if (DEBUG == 1):
       print(self.DEBUG_TAG + ":draw:Entities:" + str(len(entity_list)))
-    for x in range(len(entity_list)):
-      y=entity_list[x]
-
+    for y in entity_list:
 			# Scale and draw image
       scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
       self.display_surface.blit(scaled_image, (y.getX(), y.getY()))

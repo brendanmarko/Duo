@@ -5,6 +5,7 @@
 from Level import *
 from Racer import *
 from Player import *
+from CustomGroup import *
 from WallBuilder import *
 
 # PPM Values
@@ -43,7 +44,8 @@ class LevelBuilder:
 
     # Storage
     self.wall_list=[]
-    self.entity_list=[]
+    #self.entity_list=[]
+    self.group_e=CustomGroup()
 
     # File path check
     if (self.DEBUG == 1):
@@ -84,13 +86,14 @@ class LevelBuilder:
     elif (char == 'r'):
       print(self.DEBUG_TAG + ":Racer")
       new_racer=Racer(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-      self.entity_list.append(new_racer)  
+#      self.entity_list.append(new_racer)  
+      self.group_e.add(new_racer)     
 
     elif (char == 'p'):
       print(self.DEBUG_TAG + ":Player")
       self.player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-      self.entity_list.append(self.player)
-      
+#      self.entity_list.append(self.player)
+      self.group_e.add(self.player)     
 
     elif (char == 'd'):
       print("Destructible found.")
@@ -151,7 +154,7 @@ class LevelBuilder:
     self.buildGameWorld()
 
     # Build Level
-    self.curr_level=Level(self.wall_list, self.entity_list)  
+    self.curr_level=Level(self.wall_list, self.group_e)  
     return self.curr_level
 
   # getLevel(self)
