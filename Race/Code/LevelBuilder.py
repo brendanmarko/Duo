@@ -8,10 +8,6 @@ from Player import *
 from CustomGroup import *
 from WallBuilder import *
 
-# PPM Values
-PPM_X=32
-PPM_Y=18
-
 class LevelBuilder:
   'Reads in Level data and populates a collection to store the Level layout'
     
@@ -21,7 +17,7 @@ class LevelBuilder:
 
     # Constructor (self, level)
     # This constructor takes a String; the level to be loaded
-  def __init__(self, level):
+  def __init__(self, level, PPM_X, PPM_Y):
     print("LevelBuilder created with: " + level)  
 
     # Debug info
@@ -44,7 +40,6 @@ class LevelBuilder:
 
     # Storage
     self.wall_list=[]
-    #self.entity_list=[]
     self.group_e=CustomGroup()
 
     # File path check
@@ -86,13 +81,11 @@ class LevelBuilder:
     elif (char == 'r'):
       print(self.DEBUG_TAG + ":Racer")
       new_racer=Racer(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-#      self.entity_list.append(new_racer)  
       self.group_e.add(new_racer)     
 
     elif (char == 'p'):
       print(self.DEBUG_TAG + ":Player")
       self.player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
-#      self.entity_list.append(self.player)
       self.group_e.add(self.player)     
 
     elif (char == 'd'):
@@ -154,7 +147,7 @@ class LevelBuilder:
     self.buildGameWorld()
 
     # Build Level
-    self.curr_level=Level(self.wall_list, self.group_e)  
+    self.curr_level=Level(self.wall_list, self.group_e, self.player)  
     return self.curr_level
 
   # getLevel(self)
@@ -168,8 +161,3 @@ class LevelBuilder:
   # Returns the list containing the current Level
   def getLevelList(self):
     return self.level_storage
-
-  # getPlayer(self)
-  # Returns player object
-  def getPlayer(self):
-    return self.player

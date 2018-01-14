@@ -5,7 +5,7 @@ class Level(object):
 
   # Level(walls, entities)
   # Creates a Level given two input lists
-  def __init__(self, walls, entities):
+  def __init__(self, walls, entities, player):
     'Stores lists of game objects wrt a given level'
 
     # Debug Info
@@ -18,6 +18,9 @@ class Level(object):
     # Populate Level object lists
     self.w_list=walls
     self.e_list=entities
+
+    # Track player
+    self.player=player
 
     # Preview Lists
     if (self.DEBUG == 1):
@@ -32,3 +35,6 @@ class Level(object):
 
   def getEntities(self):
     return self.e_list
+ 
+  def getPlayer(self):
+    return self.player
