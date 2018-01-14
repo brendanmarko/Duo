@@ -47,7 +47,7 @@ class ObjectData(object):
       self.dim.updateStorage(width, height)
 
       # Speed
-      self.speed=0.15
+      self.speed=0.1
 
     elif (input_char == 'r'):
       width=1
@@ -57,7 +57,7 @@ class ObjectData(object):
       self.dim.updateStorage(width, height)
   
       # Speed
-      self.speed=0.125
+      self.speed=0.1
 
     elif (input_char == 'w'):
       width=1

@@ -119,10 +119,8 @@ class Main(object):
     for x in range(len(entity_list)):
       y=entity_list[x]
 
-			# Scale image to proper size
+			# Scale and draw image
       scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
-
-      # Blits (draws) entity to surface
       self.display_surface.blit(scaled_image, (y.getX(), y.getY()))
   
 # Execute the Game
