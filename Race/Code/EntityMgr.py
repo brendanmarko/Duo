@@ -11,7 +11,7 @@ from CustomGroup import *
 class EntityMgr(object):
   'Handles the management of Entity groups'
 
-  def __init__(self):
+  def __init__(self, curr_lvl):
     # Debug info
     self.DEBUG=1
     self.DEBUG_TAG='[EntityMgr]'
@@ -21,13 +21,20 @@ class EntityMgr(object):
 
     # Groups
     # [Entity, Wall]
-    self.e_group=CustomGroup()
-    self.w_group=CustomGroup()
+    self.e_group=curr_lvl.getEntities()
+    self.w_group=curr_lvl.getWalls()
+
+    # Player tracking
+    self.player=curr_lvl.getPlayer()
 
     # PPM
     self.ppm=Position(0,0)
 
-  # Must be called during initialization
-  def setPixelSize(self, ppm_x, ppm_y):
-    self.ppm.updateStorage(ppm_x, ppm_y)
+  def getEntities(self):
+    return self.e_group
 
+  def getPlayer(self):
+    return self.player
+
+  def getWalls(self):
+    return self.w_group
