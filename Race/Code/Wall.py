@@ -1,42 +1,26 @@
 # Wall.py
-# Manipulates/Creates the Wall object in the game world
+# A collection of WallSegments form Walls
 
-# Imports
-import pygame
-
-# Debug info
-DEBUG=1
-DEBUG_TAG="[Wall]"
+# Class imports
+from Entity import *
+from CustomGroup import *
+from WallSegment import *
 
 class Wall(object):
-  'Manipulates/Creates the Wall object in the game world'
+  'A collection of WallSegments form Walls'
+  
+  def __init__(self, x_start, y_start, x_span, y_span, ppm):
+    # Debug info
+    self.DEBUG=1
+    self.DEBUG_TAG="[Wall]"
+  
+    # Storage 
+    self.wall_section=CustomGroup()
 
-  # Wall(self, start, close)
-  # Begins the build process of the Wall
-  def __init__(self, x, y, span_x, span_y):
-    if (DEBUG == 1):
-      print(DEBUG_TAG + ":init:" + str(x) + ":" + str(y) + ":" + str(span_x) + ":" + str(span_y))
+    # Build WallSegments
+    for x in range(x_span):
+      new_segment=WallSegment(x_start + x, y_start, ppm)
+      self.wall_section.add(new_segment) 
 
-    # Build Wall (L, T, W, H)
-    self.hitbox=pygame.Rect(x, y, span_x, span_y)
-
-  # collisionCheck(self, pos)
-  # Checks if an object is colliding with the Wall
-  def collisionCheck(self, pos):
-    if (DEBUG == 1):
-      print(DEBUG_TAG + ":collisionCheck")
-
-    # No row/column collision occured
-    return 0;
-    
-  # printWall(self)
-  # Prints the positions of the wall
-  def printWall(self):
-    print(DEBUG_TAG + ":printWall")
-    print("[" + str(self.hitbox.left) + "->" + str(self.hitbox.right) + "],[" + str(self.hitbox.top) + "->" + str(self.hitbox.bottom) + "]")
-
-  # getHitbox(self):
-  # Returns the Rect box that denotes a Wall
-  def getHitbox(self):
-    return self.hitbox
-
+  def getWall(self):
+    return self.wall_section

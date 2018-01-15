@@ -39,7 +39,7 @@ class LevelBuilder:
     self.wall_builder=WallBuilder(0, 0, self.ppm)
 
     # Storage
-    self.wall_list=[]
+    self.group_w=CustomGroup()
     self.group_e=CustomGroup()
 
     # File path check
@@ -124,7 +124,7 @@ class LevelBuilder:
         self.handleChar((self.level_storage[row])[column])
     
     # Assigns Walls to wall_list
-    self.wall_list=self.wall_builder.wallCollection()
+    self.group_w=self.wall_builder.wallCollection()
     print("[Game world build complete]")
 
     # setup(self)
@@ -144,7 +144,7 @@ class LevelBuilder:
     self.buildGameWorld()
 
     # Build Level
-    return Level(self.wall_list, self.group_e, self.player)  
+    return Level(self.group_w, self.group_e, self.player)  
 
   # getLevel(self)
   # Returns the list containing the current Level

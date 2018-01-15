@@ -44,15 +44,11 @@ class Game(object):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":draw")
     
-    # Draw the Walls
-    if (DEBUG == 1):
-      print(self.DEBUG_TAG + ":draw:Walls:" + str(len(self.current_lvl.getWalls())))
-    
-    wall_list=self.entity_mgr.getWalls()
-    for x in range(len(wall_list)):
-      y=wall_list[x]
-      y.printWall()
-      pygame.draw.rect(display_surface, (169,169,169),  y.getHitbox(), 0)
+    # Draw the Walls 
+    for x in self.entity_mgr.getWalls():
+      for y in x.getWall():
+        scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
+        display_surface.blit(scaled_image, (y.getX(), y.getY()))
     
     # Draw the Entities
     for y in self.entity_mgr.getEntities():

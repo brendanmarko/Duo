@@ -3,6 +3,7 @@
 
 # Imports
 from Wall import *
+from CustomGroup import *
 
 class WallBuilder(object):
   'Handles the building of Wall objects passed from LevelBuilder'
@@ -90,7 +91,7 @@ class WallBuilder(object):
       print(self.DEBUG_TAG + ":closeWall:pos:" + str(self.x_start) + ":" + str(self.y_start))
 
     # Build Wall; value of y_span still needs to be used for vertical walls later
-    new_wall=Wall(self.x_start*self.ppm.getX(), self.y_start*self.ppm.getY(), self.x_span*self.ppm.getX(), self.y_span*self.ppm.getY())
+    new_wall=Wall(self.x_start, self.y_start, self.x_span, self.y_span, self.ppm)
     self.wall_storage.append(new_wall)
 
     # Resets the WallBuilder
