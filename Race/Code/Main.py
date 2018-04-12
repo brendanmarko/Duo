@@ -13,7 +13,7 @@ from LevelBuilder import *
 GAME_FPS=30
 GAME_X_DIM=800
 GAME_Y_DIM=600
-GAME_TITLE="RACE 0.15c"
+GAME_TITLE="RACE0.15C"
 
 class Main(object):
   'launches the game'  

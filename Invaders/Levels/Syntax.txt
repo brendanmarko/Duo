@@ -1,0 +1,7 @@
+Level Syntax
+============
+w 	Wall start/end-pt
+-	Wall connector
+0 	Race end-pt
+r	Racer
+	Empty space

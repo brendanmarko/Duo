@@ -20,7 +20,7 @@ class Entity(pygame.sprite.Sprite):
     self.height=self.info.getDims().getY()*ppm.getY()
 
     # Loads image file corresponding to object name
-    self.image=pygame.image.load('Resources/Images/' + self.info.getName() + '.png').convert()
+    self.image=pygame.image.load('Bitmaps/' + self.info.getName() + '.png').convert()
     
     # Debug info
     self.DEBUG=1
