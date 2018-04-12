@@ -1,7 +1,12 @@
-This project will serve as an interactive learning of Python. It will feature the growth from basic scripts and programs into a more complex, established project at a later date.
+**ABOUT PROJECT**
+This project will serve as my git for Python projects.
+
+Current Projects:
+1) Game Engine        [Active]
+2) Bluetooth Server   [Paused]
 
 Project contents: 
-=================
 * **Race** consists of a simple race game
-* **Test** consists of simple python files
+* **Invaders** consists of base game engine from Race with additions
+  * **VERSION=0.20**
 
