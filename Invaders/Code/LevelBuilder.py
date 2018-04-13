@@ -8,8 +8,8 @@ from Player import *
 from WallBuilder import *
 
 # PPM Values
-PPM_X=45
-PPM_Y=30
+PPM_X=60
+PPM_Y=90
 
 class LevelBuilder:
   'Reads in Level data and populates a collection to store the layout'
@@ -49,15 +49,18 @@ class LevelBuilder:
     if (self.DEBUG == 1):
       print("Value of file_path: " + self.file_path)
 
-    # Further setup steps
     self.curr_level=self.setup()
 
-    # printLayout(self)
-    # Prints current level
+  # printLayout(self)
+  # Prints current level
   def printLayout(self):
     for i in range(len(self.level_storage)):
       print(self.level_storage[i])
     
+  # Returns level dimensions
+  def getDimensions(self):
+    return self.dimensions
+
   # handleChar(self, char)
   # Constructs Objects based upon character being passed
   def handleChar(self, char):
@@ -109,7 +112,12 @@ class LevelBuilder:
     # Represents Rows and Columns respectively
     self.curr_reader_pos[0]=0
     self.curr_reader_pos[1]=0
-    
+   
+    width=len(self.level_storage)
+    length=len(self.level_storage[0])
+
+    self.dimensions=[length*PPM_X, width*PPM_Y]
+
     # Outer for-loop iterates over rows (Y-axis)
     for row in range(len(self.level_storage)):
   

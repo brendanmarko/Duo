@@ -5,6 +5,7 @@ DEBUG=1
 TITLE_SIZE=200
 
 from BaseState import *
+from BoundChecker import *
 from LevelBuilder import *
 from CharacterHandler import *
 
@@ -26,7 +27,7 @@ class Level(BaseState):
     self.entities=self.builder.getEntities()
     self.player=self.builder.getPlayer()
 
-    # Handles input
+    self.checker=BoundChecker(self.builder.getDimensions())
     self.handler=CharacterHandler()
 
   def onEnter(self, prev_state):
@@ -41,6 +42,7 @@ class Level(BaseState):
       y=self.entities[x]
       if (y.getMovable() == True):
         y.update()
+        self.checker.checkPosition(y)
 
   def onExit(self):
     print("[Level]:onExit")

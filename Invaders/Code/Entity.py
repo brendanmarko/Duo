@@ -48,6 +48,12 @@ class Entity(pygame.sprite.Sprite):
   def getY(self):
     return self.y
 
+  def setX(self, x):
+    self.x=x
+
+  def setY(self, y):
+    self.y=y
+
   def updatePosition(self, displacement):
     if (self.DEBUG == 1):
       print(self.DEBUG_TAG + ":updatePosition")

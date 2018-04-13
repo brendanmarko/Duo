@@ -41,23 +41,23 @@ class ObjectData(object):
 
     if (input_char == 'p'):
       width=1
-      height=2
+      height=1
       self.name='player'
       self.color=C_GRN
       self.dim.updateStorage(width, height)
 
-      # Speed
-      self.speed=1
+      # Speed, value [0, 1]
+      self.speed=0.3
 
     elif (input_char == 'r'):
       width=1
-      height=2
+      height=1
       self.name='racer'
       self.color=C_RED
       self.dim.updateStorage(width, height)
   
-      # Speed
-      self.speed=1
+      # Speed, value [0, 1]
+      self.speed=0.3
 
     elif (input_char == 'w'):
       width=1
