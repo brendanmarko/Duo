@@ -20,6 +20,12 @@ class Position(object):
   def getY(self):
     return self.curr_pos[1]
 
+  def updateX(self, x):
+    self.curr_pos[0]=x
+
+  def updateY(self, y):
+    self.curr_pos[1]=y
+
   def updateStorage(self, new_x, new_y):
     self.curr_pos[0]=new_x
     self.curr_pos[1]=new_y

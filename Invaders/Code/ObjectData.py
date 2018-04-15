@@ -3,6 +3,10 @@
 # Imports
 from Position import *
 
+# PPM Values
+PPM_X=60
+PPM_Y=90
+
 # Debug info
 DEBUG=1
 DEBUG_TAG="[ObjectData]"
@@ -26,10 +30,11 @@ class ObjectData(object):
     if (DEBUG == 1):
       print(DEBUG_TAG + ":init")
 
-    # Variables
-    self.dim=Position(0,0)
+    # WIDTH && HEIGHT
+    self.dimensions=Position(0,0)
+
     self.color=C_BLK
-    self.speed=0
+    self.speed_factor=0.0
     self.name='none'
 
     # Build object
@@ -40,35 +45,41 @@ class ObjectData(object):
       print(DEBUG_TAG + ":buildObject:" + str(input_char))
 
     if (input_char == 'p'):
-      width=1
-      height=1
       self.name='player'
       self.color=C_GRN
-      self.dim.updateStorage(width, height)
 
-      # Speed, value [0, 1]
-      self.speed=0.3
+      # Width and Height
+      self.dimensions.updateStorage(PPM_X*1, PPM_Y*1)
+      self.speed_factor=0.3
 
     elif (input_char == 'r'):
-      width=1
-      height=1
       self.name='racer'
       self.color=C_RED
-      self.dim.updateStorage(width, height)
-  
-      # Speed, value [0, 1]
-      self.speed=0.3
 
+      # Width and Height
+      self.dimensions.updateStorage(PPM_X*1, PPM_Y*1)
+      self.speed_factor=0.3
+
+    # Projectiles 
+    ## Bullet
+    elif (input_char == 'b'):
+      self.name='bullet'
+      self.color=C_YLW
+      
+      # Width and Height
+      self.dimensions.updateStorage(PPM_X*1, PPM_Y*1)
+      self.speed_factor=0.5
+
+    # Wall
     elif (input_char == 'w'):
-      width=1
-      height=1
       self.name='wall'
       self.color=C_GRY
-      self.dim.updateStorage(width, height)
+      self.dimensions.updateStorage(1, 1)
+      self.speed_factor=0.0
 
   # Helpers
   def getDims(self):
-    return self.dim  
+    return self.dimensions  
 
   def getName(self):
     return self.name
@@ -77,4 +88,4 @@ class ObjectData(object):
     return self.color
 
   def getSpeed(self):
-    return self.speed
+    return self.speed_factor

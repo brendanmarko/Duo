@@ -3,57 +3,63 @@
 # Imports
 from Entity import *
 from MovementHandler import *
+  
+DEBUG=1
 
 class MovableEntity(Entity):
   'This class represents entities with the ability to move'
 
-  def __init__(self, x, y, object_type, ppm):
-    # Debug info
-    self.DEBUG=1
-    self.DEBUG_TAG="[MovableEntity]"
+  def __init__(self, pos, object_type):
 
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Constructor")
+    if (DEBUG == 1):
+      print("[MovableEntity]:init")
 
-    self.movement_controls=MovementHandler()
-    Entity.__init__(self, x, y, object_type, ppm)
+    self.mover=MovementHandler()
+    Entity.__init__(self, pos, object_type)
     self.setMovable(True)
 
-    # Direction
+    # Speed and direction
+    self.speed=self.info.getSpeed()
     self.direction='E'
 
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":Fin")
+  ### Direction helpers
+  ### Set direction
+  def setDirection(self, new_dir):
+    self.direction=new_dir
 
-  ### Movement Management
-  ##  Handles updating entity position and hitbox 
+  def getDirection(self):
+    return self.direction
+
+  # Update wrt movement changes
   def update(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":update")
-    displacement=self.movement_controls.calcDisplacement(self.getSpeed(), self.direction)
-    self.updatePosition(displacement)
-    self.updateHitbox() 
-    
-    if (self.DEBUG == 1):
-      displacement.printPos()
+    if (DEBUG == 1):
+      print("[MovableEntity]:update")
+    displacement=self.mover.calcDisplacement(self.direction, self.speed) 
 
+  # Rotation by direction helpers
   def rotateEast(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateEast")
+    if (DEBUG == 1):
+      print("[MovableEntity]:rotateEast")
     self.direction='E'
 
   def rotateWest(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateWest")
+    if (DEBUG == 1):
+      print("[MovableEntity]:rotateWest")
     self.direction='W'
 
   def rotateSouth(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateSouth")
+    if (DEBUG == 1):
+      print("[MovableEntity]:rotateSouth")
     self.direction='S'
 
   def rotateNorth(self):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":rotateNorth")
+    if (DEBUG == 1):
+      print("[MovableEntity]:rotateNorth")
     self.direction='N'
-  ### end : Movement Management
+
+  # Speed helpers
+  def getSpeed(self):
+    return self.speed
+
+  def setSpeed(self, new_speed):
+    self.speed=new_speed

@@ -2,69 +2,63 @@
 # Base class for in-game objects; uses Sprites
 
 # Library imports
-import pygame, os
+
+import os
+import pygame
 
 # Class imports
 from Position import *
 from ObjectData import *
 
+DEBUG=1
+
 class Entity(pygame.sprite.Sprite):
   'Base class for in-game objects; uses Sprites'
 
-  def __init__(self, x, y, object_type, ppm):     
+  def __init__(self, pos, input_type):
     pygame.sprite.Sprite.__init__(self)
+   
+    # Object Data 
+    self.info=ObjectData(input_type)
 
-    # Dimension data    
-    self.info=ObjectData(object_type)
-    self.width=self.info.getDims().getX()*ppm.getX()
-    self.height=self.info.getDims().getY()*ppm.getY()
+    # Position data
+    self.position=Position(pos[0], pos[1])
+
+    if (DEBUG == 1):
+      print("[Entity]:pos=" + str(self.position.getX()) + "," + str(self.position.getY()))
 
     # Loads image file corresponding to object name
     self.image=pygame.image.load('Bitmaps/' + self.info.getName() + '.png').convert()
-    
-    # Debug info
-    self.DEBUG=1
-    self.DEBUG_TAG="[Entity]"
-    
-    # Position data
-    self.x=x*ppm.getX()
-    self.y=y*ppm.getY()
-    self.e_ppm=ppm
-    self.position=Position(self.x, self.y)
-
-    # Movable flag
-    self.movable=False
-  
-    # Speed
-    self.speed=self.info.getSpeed()
-
-    # Hitbox setup
-    self.calculateHitbox(self.x, self.y, self.width, self.height)
+    self.setMovable(False)
 
   ##### Position functions
   def getX(self):
-    return self.x
+    return self.position.getX()
 
   def getY(self):
-    return self.y
+    return self.position.getY()
+
+  def getPos(self):
+    return self.position
 
   def setX(self, x):
-    self.x=x
+    self.position.updateX(x)
 
   def setY(self, y):
-    self.y=y
+    self.position.updateY(y)
 
+  # This function expects calcDisplacement output as input
   def updatePosition(self, displacement):
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":updatePosition")
-      print(self.DEBUG_TAG + ":preUpdate [X=" + str(self.x) + ", Y=" + str(self.y) + "]")
+    if (DEBUG == 1):
+      print("[Entity]:updatePosition")
+      print("[Entity]:preUpdate [X=" + str(self.getX()) + ", Y=" + str(self.getY()) + "]")
 
-    self.x+=(displacement.getX()*self.e_ppm.getX())
-    self.y+=(displacement.getY()*self.e_ppm.getY())
-    self.position.updateStorage(self.x, self.y)
+    x=self.getX() + displacement.getX()
+    y=self.getY() + displacement.getY()
+    self.position.updateStorage(x,y)
 
-    if (self.DEBUG == 1):
-      print(self.DEBUG_TAG + ":newUpdate [X=" + str(self.x) + ", Y=" + str(self.y) + "]")
+    if (DEBUG == 1):
+      print("[Entity]:newUpdate [X=" + str(self.getX()) + ", Y=" + str(self.getY()) + "]")
 
   ##### end : Position functions
 
@@ -73,10 +67,10 @@ class Entity(pygame.sprite.Sprite):
     return self.image
 
   def getWidth(self):
-    return self.width
+    return self.info.getDims().getX()
 
   def getHeight(self):
-    return self.height 
+    return self.info.getDims().getY()
 
   ##### end : Dimensions & Images 
 
@@ -89,20 +83,13 @@ class Entity(pygame.sprite.Sprite):
 
   def getMovable(self):
     return self.movable
-
-  def getSpeed(self):
-    return self.speed
-
-  def setSpeed(self, new_speed):
-    self.speed=new_speed
-  ##### end : Movable Status
  
   ##### Hitbox functions 
   # calculateHitbox(x, y, width, height)
   # Builds the hitbox for the Entity; separate function (incase more functionality is needed)
   def calculateHitbox(self, x, y, width, height):
     self.hitbox=pygame.Rect(x, y, width, height)
-    if (self.DEBUG == 1):
+    if (DEBUG == 1):
       print("Values of hitbox: (" + str(x) + "->" + str(x+width) + ", " + str(y) + "->" + str(y+height)  + ")")
       print("Values of Rect: T=" + str(self.hitbox.top) + ", L=" + str(self.hitbox.left) + ", B=" + str(self.hitbox.bottom) + ", R=" + str(self.hitbox.right))
 

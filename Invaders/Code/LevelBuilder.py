@@ -86,12 +86,14 @@ class LevelBuilder:
     # Handles Racers
     elif (char == 'r'):
       print(self.DEBUG_TAG + ":Racer")
-      new_racer=Racer(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
+
+      # Must scale position/dims due to origin within level file
+      new_racer=Racer((self.curr_reader_pos[1], self.curr_reader_pos[0]), 'r')
       self.entity_list.append(new_racer)  
 
     elif (char == 'p'):
       print(self.DEBUG_TAG + ":Player")
-      self.player=Player(self.curr_reader_pos[1], self.curr_reader_pos[0], self.ppm)
+      self.player=Player((PPM_X*self.curr_reader_pos[1], PPM_Y*self.curr_reader_pos[0]), 'p')
       self.entity_list.append(self.player)
 
     elif (char == 'd'):
@@ -177,3 +179,8 @@ class LevelBuilder:
   # Returns player object
   def getPlayer(self):
     return self.player
+
+  # getPPM(self)
+  # Returns PPM values as position
+  def getPPM(self):
+    return ((PPM_X, PPM_Y))

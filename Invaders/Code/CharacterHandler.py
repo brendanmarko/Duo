@@ -14,7 +14,7 @@ class CharacterHandler(EventHandler):
     if (DEBUG == 1):
       print("[CharacterHandler]:handleEvent: " + str(event))
     
-    # Handles [Quit]
+    # Handles quit
     if (event.type == pygame.QUIT):
       pygame.quit()
       sys.exit()
@@ -43,6 +43,12 @@ class CharacterHandler(EventHandler):
       if (DEBUG == 1):
         print("[CharacterHandler]:right_move_cap]")
       return "RIGHT"
+
+    # Handles spacebar as input
+    elif (pressed[pygame.K_SPACE]):
+      if (DEBUG == 1):
+        print("[CharacterHandler]:space_cap]")
+      return "FIRE"
 
     # Handles entry selection
     elif (pressed[pygame.K_RETURN]):

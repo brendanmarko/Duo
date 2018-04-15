@@ -3,8 +3,8 @@
 
 # Imports
 from MovableEntity import *
+from CharacterHandler import *
 
-# Debug info
 DEBUG=1
 DEBUG_TAG="[Player]"
 
@@ -13,6 +13,17 @@ class Player(MovableEntity):
   
   # Player(self, x, y)
   # Initializes Player with position[x,y]
-  def __init__(self, x, y, ppm):    
-    self.object_type='p'
-    MovableEntity.__init__(self, x, y, self.object_type, ppm)
+  def __init__(self, pos, object_type):    
+    MovableEntity.__init__(self, pos, object_type)
+    self.controls=CharacterHandler()
+
+  def update(self):
+    print("[Player]:update")
+    displacement=self.mover.calcDisplacement(self.direction, self.speed) 
+    self.updatePosition(displacement)
+
+  def handleEvent(self, event):
+    result=self.controls.handleEvent(event)
+    
+    if (result == "LEFT"):
+      self.rotateEast()

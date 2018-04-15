@@ -13,7 +13,7 @@ class WallBuilder(object):
     print("WallBuilder created.")
       
     # Debug info
-    self.DEBUG=1
+    self.DEBUG=0
     self.DEBUG_TAG="[WallBuilder]"
 
     # PPM

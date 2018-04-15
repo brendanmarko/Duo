@@ -8,6 +8,7 @@ from BaseState import *
 from BoundChecker import *
 from LevelBuilder import *
 from CharacterHandler import *
+from ProjectileFactory import *
 
 class Level(BaseState):
   def __init__(self, game):
@@ -26,6 +27,10 @@ class Level(BaseState):
     self.walls=self.builder.getWalls()
     self.entities=self.builder.getEntities()
     self.player=self.builder.getPlayer()
+    self.ppm=self.builder.getPPM()
+
+    # ProjectileFactory
+    self.projectiles=ProjectileFactory(self.ppm)
 
     self.checker=BoundChecker(self.builder.getDimensions())
     self.handler=CharacterHandler()
@@ -87,3 +92,7 @@ class Level(BaseState):
     elif (result == "RIGHT"):
       print("RIGHT")
       self.player.rotateEast()
+
+    elif (result == "FIRE"):
+      print("FIRE")
+      self.projectiles.createProjectile(self.player, 'b')
