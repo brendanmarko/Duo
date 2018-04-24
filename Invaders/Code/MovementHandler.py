@@ -7,7 +7,7 @@ from VariableDump import *
 
 DEBUG=1
 DEBUG_TAG="[MovementHandler]"
-
+SPEED_FACTOR=2 #1/X
 class MovementHandler(object):
   'Handles movement wrt entities'
 
@@ -20,7 +20,7 @@ class MovementHandler(object):
 
   def calcDisplacement(self, direction, speed):
     if (DEBUG == 1):
-      print(DEBUG_TAG + ":Calculating displacement")  
+      print(DEBUG_TAG + ":single_disp")  
     
     # Displacement 
     displacement=Position(0,0)
@@ -29,17 +29,19 @@ class MovementHandler(object):
     if (speed == 0):
       return displacement
 
+    # !!!
+    # Need to reconfigure the way displacement is calculated, reliance upon PPM IS BAD
     if (direction == 'E'):
-      displacement.updateX(self.ppm_x * speed)
+      displacement.updateX(self.ppm_x/SPEED_FACTOR * speed)
 
     if (direction == 'N'):
-      displacement.updateY(self.ppm_y * (0-speed))
+      displacement.updateY(self.ppm_y/SPEED_FACTOR * (0-speed))
 
     if (direction == 'S'):
-      displacement.updateY(self.ppm_y * speed)
+      displacement.updateY(self.ppm_y/SPEED_FACTOR * speed)
 
     if (direction == 'W'):
-      displacement.updateX(self.ppm_x * (0-speed))
+      displacement.updateX(self.ppm_x/SPEED_FACTOR * (0-speed))
     
     if (DEBUG == 1):
       print("[MovementHandler]:disp=" + str(displacement.getX()) + ", " + str(displacement.getY()))

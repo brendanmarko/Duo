@@ -1,0 +1,28 @@
+[Game]:event_size=1
+[Level]:handleEvent=<Event(2-KeyDown {'unicode': 'd', 'key': 100, 'mod': 0, 'scancode': 40})>
+[CharacterHandler]:handleEvent: <Event(2-KeyDown {'unicode': 'd', 'key': 100, 'mod': 0, 'scancode': 40})>
+[CharacterHandler]:right_move_cap]
+RIGHT
+[MovableEntity]:rotateE
+[Player]:update
+[ArmedEntity]:update
+[MovableEntity]:update
+[MovementHandler]:single_disp
+[Position]:init
+[MovementHandler]:disp=9.0, 0
+[BoundChecker]:checkPosition:completed
+[Level]:draw
+[Game]:event_size=1
+[Level]:handleEvent=<Event(2-KeyDown {'unicode': 's', 'key': 115, 'mod': 0, 'scancode': 39})>
+[CharacterHandler]:handleEvent: <Event(2-KeyDown {'unicode': 's', 'key': 115, 'mod': 0, 'scancode': 39})>
+[CharacterHandler]:down_move_cap]
+S
+[MovableEntity]:rotateS
+[Player]:update
+[ArmedEntity]:update
+[MovableEntity]:update
+[MovementHandler]:single_disp
+[Position]:init
+[MovementHandler]:disp=0, 13.5
+[BoundChecker]:checkPosition:completed
+

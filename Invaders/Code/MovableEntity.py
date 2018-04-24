@@ -35,26 +35,27 @@ class MovableEntity(Entity):
     if (DEBUG == 1):
       print("[MovableEntity]:update")
     displacement=self.mover.calcDisplacement(self.direction, self.speed) 
+    self.updatePosition(displacement)
 
   # Rotation by direction helpers
-  def rotateEast(self):
+  def rotateE(self):
     if (DEBUG == 1):
-      print("[MovableEntity]:rotateEast")
+      print("[MovableEntity]:rotateE")
     self.direction='E'
 
-  def rotateWest(self):
+  def rotateW(self):
     if (DEBUG == 1):
-      print("[MovableEntity]:rotateWest")
+      print("[MovableEntity]:rotateW")
     self.direction='W'
 
-  def rotateSouth(self):
+  def rotateS(self):
     if (DEBUG == 1):
-      print("[MovableEntity]:rotateSouth")
+      print("[MovableEntity]:rotateS")
     self.direction='S'
 
-  def rotateNorth(self):
+  def rotateN(self):
     if (DEBUG == 1):
-      print("[MovableEntity]:rotateNorth")
+      print("[MovableEntity]:rotateN")
     self.direction='N'
 
   # Speed helpers

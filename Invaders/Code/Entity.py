@@ -10,7 +10,7 @@ import pygame
 from Position import *
 from ObjectData import *
 
-DEBUG=1
+DEBUG=0
 
 class Entity(pygame.sprite.Sprite):
   'Base class for in-game objects; uses Sprites'

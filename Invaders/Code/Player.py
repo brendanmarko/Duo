@@ -2,28 +2,19 @@
 # Manages the properties and actions of the Player
 
 # Imports
-from MovableEntity import *
+from ArmedEntity import *
 from CharacterHandler import *
 
 DEBUG=1
 DEBUG_TAG="[Player]"
 
-class Player(MovableEntity):
+class Player(ArmedEntity):
   'Manages the properties and actions of the Player'
   
-  # Player(self, x, y)
-  # Initializes Player with position[x,y]
+  # Initializes player
   def __init__(self, pos, object_type):    
-    MovableEntity.__init__(self, pos, object_type)
-    self.controls=CharacterHandler()
+    ArmedEntity.__init__(self, pos, object_type)
 
   def update(self):
     print("[Player]:update")
-    displacement=self.mover.calcDisplacement(self.direction, self.speed) 
-    self.updatePosition(displacement)
-
-  def handleEvent(self, event):
-    result=self.controls.handleEvent(event)
-    
-    if (result == "LEFT"):
-      self.rotateEast()
+    ArmedEntity.update(self)

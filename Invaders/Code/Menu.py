@@ -71,15 +71,14 @@ class Menu(BaseState):
 
     if (result == "UP"):
       self.selectedUp()
-      print("UP")
 
     elif (result == "DOWN"):
       self.selectedDown()
-      print("DOWN")
 
     elif (result == "ENTER"):
       # Game
       self.game.getCurrStateMgr().changeState(Level(self.game))
+
       # Settings
 
       # Quit
@@ -87,8 +86,6 @@ class Menu(BaseState):
         self.game.getCurrStateMgr().changeState(None)  
 
   def update(self, elapsed):
-    print("[Menu]:update")
-
     # Update the selected index entry color
     for i in range(0, len(self.menu_list)):
       if (i == self.selected):
@@ -103,8 +100,6 @@ class Menu(BaseState):
     return self.game.getWidth()/2 - w/2
 
   def draw(self, surface):
-    print("[Menu]:draw")
-  
     # Fill background
     surface.unlock()
     surface.fill((0,0,0))

@@ -24,7 +24,7 @@ class LevelBuilder:
     print("LevelBuilder created with: " + level_number)  
 
     # Debug info
-    self.DEBUG=1
+    self.DEBUG=0
     self.DEBUG_TAG="[LevelBuilder]"
 
     # Variable init
@@ -33,7 +33,7 @@ class LevelBuilder:
     self.curr_reader_pos=[0,0]
 
     # Player 
-    self.player=None
+    self.p=None
 
 		# PPM
     self.ppm=Position(PPM_X, PPM_Y)
@@ -85,16 +85,14 @@ class LevelBuilder:
 
     # Handles Racers
     elif (char == 'r'):
-      print(self.DEBUG_TAG + ":Racer")
-
       # Must scale position/dims due to origin within level file
-      new_racer=Racer((self.curr_reader_pos[1], self.curr_reader_pos[0]), 'r')
+      new_racer=Racer((PPM_X*self.curr_reader_pos[1], PPM_Y*self.curr_reader_pos[0]), 'r')
       self.entity_list.append(new_racer)  
 
     elif (char == 'p'):
-      print(self.DEBUG_TAG + ":Player")
-      self.player=Player((PPM_X*self.curr_reader_pos[1], PPM_Y*self.curr_reader_pos[0]), 'p')
-      self.entity_list.append(self.player)
+      # Must scale position/dims due to origin within level file
+      self.p=Player((PPM_X*self.curr_reader_pos[1], PPM_Y*self.curr_reader_pos[0]), 'p')
+      self.entity_list.append(self.p)
 
     elif (char == 'd'):
       print("Destructible found.")
@@ -178,7 +176,7 @@ class LevelBuilder:
   # getPlayer(self)
   # Returns player object
   def getPlayer(self):
-    return self.player
+    return self.p
 
   # getPPM(self)
   # Returns PPM values as position

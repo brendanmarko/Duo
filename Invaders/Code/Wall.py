@@ -5,7 +5,7 @@
 import pygame
 
 # Debug info
-DEBUG=1
+DEBUG=0
 DEBUG_TAG="[Wall]"
 
 class Wall(object):
@@ -32,8 +32,9 @@ class Wall(object):
   # printWall(self)
   # Prints the positions of the wall
   def printWall(self):
-    print(DEBUG_TAG + ":printWall")
-    print("[" + str(self.hitbox.left) + "->" + str(self.hitbox.right) + "],[" + str(self.hitbox.top) + "->" + str(self.hitbox.bottom) + "]")
+    if (DEBUG == 1):
+      print(DEBUG_TAG + ":printWall")
+      print("[" + str(self.hitbox.left) + "->" + str(self.hitbox.right) + "],[" + str(self.hitbox.top) + "->" + str(self.hitbox.bottom) + "]")
 
   # getHitbox(self):
   # Returns the Rect box that denotes a Wall

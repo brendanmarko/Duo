@@ -10,6 +10,8 @@ from LevelBuilder import *
 from CharacterHandler import *
 from ProjectileFactory import *
 
+DEBUG=1
+
 class Level(BaseState):
   def __init__(self, game):
     super(Level, self).__init__(game)
@@ -43,11 +45,16 @@ class Level(BaseState):
     if (DEBUG == 1):    
       print("[Level]:update=" + str(elapsed))
         
-    for x in range(len(self.entities)):
-      y=self.entities[x]
-      if (y.getMovable() == True):
-        y.update()
-        self.checker.checkPosition(y)
+    # Update entities
+    for x in self.entities:
+      if (x.getMovable() == True):
+        x.update()
+        self.checker.checkPosition(x)
+
+    # Update projectiles
+    for p in self.projectiles.getActiveProjectiles():
+      p.update()
+      self.checker.checkPosition(p)
 
   def onExit(self):
     print("[Level]:onExit")
@@ -58,41 +65,72 @@ class Level(BaseState):
     # Surface unlocked
     surface.unlock()
 
-    # Build walls
+    # Draw walls
     for x in range(len(self.walls)):
       y=self.walls[x]
       y.printWall()
       pygame.draw.rect(surface, (169, 169, 169),  y.getHitbox(), 0)
 
-    # Build entities
+    # Draw entities
     for x in range(len(self.entities)):
       y=self.entities[x]
       scaled_image=pygame.transform.scale(y.getImage(), (y.getWidth(), y.getHeight())) 
       surface.blit(scaled_image, (y.getX(), y.getY()))
+      
+    # Draw projectiles
+    for p in self.projectiles.getActiveProjectiles():
+      scaled_image=pygame.transform.scale(p.getImage(), (p.getWidth(), p.getHeight())) 
+      surface.blit(scaled_image, (p.getX(), p.getY()))
 
-    # Surface locked
+    # Surface locke
     surface.lock()
 
-  def handleEvent(self, event):
-    print("[Level]:handleEvent=" + str(event))
-    result=self.handler.handleEvent(event)
+  def processEvent(self, result):
+    if (result == "N"):
+      print("N")
+      self.player.rotateN()
 
-    if (result == "UP"):
-      print("UP")
-      self.player.rotateNorth()
+    elif (result == "S"):
+      print("S")
+      self.player.rotateS()
 
-    elif (result == "DOWN"):
-      print("DOWN")
-      self.player.rotateSouth()
+    elif (result == "W"):
+      print("W")
+      self.player.rotateW()
 
-    elif (result == "LEFT"):
-      print("LEFT")
-      self.player.rotateWest()
-
-    elif (result == "RIGHT"):
+    elif (result == "E"):
       print("RIGHT")
-      self.player.rotateEast()
+      self.player.rotateE()
 
     elif (result == "FIRE"):
       print("FIRE")
       self.projectiles.createProjectile(self.player, 'b')
+    
+
+  def handleEvents(self, events):
+    if (DEBUG == 1):
+      print("[Level]:handleEvents=" + str(len(events)))
+
+    output=""
+
+    for event in events:
+      temp=self.handler.handleEvent(event)
+      if (DEBUG == 1):
+        print(str(temp))
+
+      if (temp == "N" or temp == "S" or temp == "W" or temp == "E"):
+        output+=temp
+    
+      else:
+        self.processEvent(temp)
+
+    # Send the cumulative direction to be entity
+    if (DEBUG == 1):
+      print("[Level]:handleEvents=" + str(output))
+
+  def handleEvent(self, event):
+    if (DEBUG == 1):
+      print("[Level]:handleEvent=" + str(event))
+    result=self.handler.handleEvent(event)
+    self.processEvent(result)
+

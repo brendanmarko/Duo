@@ -19,39 +19,44 @@ class CharacterHandler(EventHandler):
       pygame.quit()
       sys.exit()
   
-    # Handles key presses
-    pressed=pygame.key.get_pressed()
-         
-    if (pressed[pygame.K_w] or pressed[pygame.K_UP]):
+    # Handles key pressed
+    pressed=event.key
+        
+    if (DEBUG == 1):
+      print("[CharacterHandler]:key_value=" + str(pressed))
+
+    # Handles movement [N]
+    if (pressed == 119 or pressed == 273):
       if (DEBUG == 1):
         print("[CharacterHandler]:up_move_cap]")
-      return "UP"
+      return "N"
 
-    elif (pressed[pygame.K_s] or pressed[pygame.K_DOWN]): 
+    # Handles movement [S]
+    elif (pressed == 115 or pressed == 274): 
       if (DEBUG == 1):
-        print("[CharacterHandler]:down_move_cap]")
-      return "DOWN"
+       print("[CharacterHandler]:down_move_cap]")
+      return "S"
 
     # Handles movement [W]
-    elif (pressed[pygame.K_a] or pressed[pygame.K_LEFT]):
+    elif (pressed == 97 or pressed == 276):
       if (DEBUG == 1):
         print("[CharacterHandler]:left_move_cap]")
-      return "LEFT"
+      return "W"
 
 		# Handles movement [E]
-    elif (pressed[pygame.K_d] or pressed[pygame.K_RIGHT]):
+    elif (pressed == 100 or pressed == 275):
       if (DEBUG == 1):
         print("[CharacterHandler]:right_move_cap]")
-      return "RIGHT"
+      return "E"
 
     # Handles spacebar as input
-    elif (pressed[pygame.K_SPACE]):
+    elif (pressed == 32):
       if (DEBUG == 1):
         print("[CharacterHandler]:space_cap]")
       return "FIRE"
 
     # Handles entry selection
-    elif (pressed[pygame.K_RETURN]):
+    elif (pressed == 13):
       if (DEBUG == 1):
         print("[CharacterHandler]:enter_cap]")
       return "ENTER"

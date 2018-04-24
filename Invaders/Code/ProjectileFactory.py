@@ -12,10 +12,21 @@ class ProjectileFactory(object):
     if (DEBUG == 1):
       print("[ProjectileFactory]:init")
     self.ppm=input_ppm
-
-  # self, pos, direction, object_type, owner, ppm
-  def createProjectile(self, o, p_type): 
+    self.active_p=[]
+  
+  # Create and add Projectile to object targeted by createProjectile()
+  def createProjectile(self, o, projectile_type): 
     if (DEBUG == 1):
       print("[ProjectileFactory]:create")
-    p=Projectile(o.getPos(), o.getDirection(), p_type, o, self.ppm)
-    return p
+
+    # Projectile requires position tuple, not Position object
+    p=Projectile((o.getX(),o.getY()), projectile_type, o)
+    self.active_p.append(p)
+
+  def update(self):
+    # Update projectiles
+    for p in self.active_p:
+      p.update()
+
+  def getActiveProjectiles(self):
+    return self.active_p
